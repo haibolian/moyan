@@ -1,0 +1,19 @@
+{
+  "name": "moyan",
+  "version": "0.0.1",
+  "description": "a small project",
+  "main": "index.ts",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haibolian/moyan.git"
+  },
+  "author": "haibolian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haibolian/moyan/issues"
+  },
+  "homepage": "https://github.com/haibolian/moyan#readme"
+}
