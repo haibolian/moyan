@@ -1,6 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-const app = createApp(App)
+import "./style/index.scss";
+const app = createApp(App);
 
 app.mount('#app')
+
+//dark mode
+// let systemMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+// document.documentElement.setAttribute('data-mode', systemMode);

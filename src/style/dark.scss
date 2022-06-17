@@ -1,0 +1,14 @@
+[data-mode="dark"] {
+  --t-color: #fff;
+  --bg-color: #000;
+}
+
+[data-mode="light"] {
+  --t-color: #000;
+  --bg-color: #fff;
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--t-color);
+}
