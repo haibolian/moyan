@@ -17,7 +17,6 @@ export default defineComponent({
       'span',
       {
         style: {
-          height: '100%',
           verticalAlign: 'middle'
         }
       },
