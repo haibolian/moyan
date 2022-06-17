@@ -6,6 +6,11 @@ import {defineConfig} from 'vite'
 import Unocss from 'unocss/vite'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': '/src',
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -15,6 +20,13 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()]
     }),
-    Unocss()
+    Unocss({
+      theme: {
+        colors: {
+          'startColor': '#a6c1ee',
+          'endColor': '#fbc2eb',
+        }
+      }
+    })
   ],
 })
