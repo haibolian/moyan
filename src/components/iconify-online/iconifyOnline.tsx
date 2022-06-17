@@ -14,14 +14,25 @@ export default defineComponent({
   render() {
     const attrs = this.$attrs;
     return h(
-      IconifyIcon,
+      'span',
       {
-        icon: `${this.icon}`,
-        ...attrs
+        style: {
+          height: '100%',
+          verticalAlign: 'middle'
+        }
       },
-      {
-        default: () => []
-      }
+      [
+        h(
+          IconifyIcon,
+          {
+            icon: `${this.icon}`,
+            ...attrs
+          },
+          {
+            default: () => []
+          }
+        )
+      ]
     );
   }
 });
