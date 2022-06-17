@@ -77,6 +77,7 @@
 </template>
 
 <script setup lang="tsx">
+import axios from 'axios'
 import { Ref } from 'vue';
 import { useLoginForm, useRegistryForm } from './login'
 const bg_grident = ref('bg-gradient-to-tr from-startColor-500  to-endColor-500')
@@ -100,7 +101,16 @@ const jumpToRegistry = () => {
 }
 
 const handleLogin = () => {
-
+  axios({
+    method: 'get',
+    url: '/user/getUserInfo',
+    params: {
+      username: loginForm.username,
+      password: loginForm.password
+    }
+  }).then(res => {
+    console.log(res);
+  })
 }
 
 // forget password
