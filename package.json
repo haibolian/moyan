@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "a small project",
   "scripts": {
-    "dev": "vite --open"
+    "dev": "vite --open",
+    "build": "vue-tsc --noEmit && vite build"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   },
   "homepage": "https://github.com/haibolian/moyan#readme",
   "dependencies": {
+    "element-plus": "^2.2.5",
     "vue": "3.2.37",
     "vue-router": "^4.0.16"
   },
@@ -25,6 +27,7 @@
     "sass": "^1.52.3",
     "typescript": "^4.7.3",
     "unplugin-auto-import": "^0.8.8",
+    "unplugin-vue-components": "^0.19.6",
     "vite": "^2.9.12",
     "vue-tsc": "^0.37.9"
   }
