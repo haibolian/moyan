@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/haibolian/moyan#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "element-plus": "^2.2.5",
     "vue": "3.2.37",
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
+    "@iconify/vue": "^3.2.1",
     "@types/node": "^18.0.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "sass": "^1.52.3",
