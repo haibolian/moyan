@@ -2,9 +2,8 @@
   "name": "moyan",
   "version": "0.0.1",
   "description": "a small project",
-  "main": "index.ts",
   "scripts": {
-    
+    "dev": "vite --open"
   },
   "repository": {
     "type": "git",
@@ -15,5 +14,17 @@
   "bugs": {
     "url": "https://github.com/haibolian/moyan/issues"
   },
-  "homepage": "https://github.com/haibolian/moyan#readme"
+  "homepage": "https://github.com/haibolian/moyan#readme",
+  "dependencies": {
+    "vue": "3.2.37",
+    "vue-router": "^4.0.16"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "sass": "^1.52.3",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.12",
+    "vue-tsc": "^0.37.9"
+  }
 }
