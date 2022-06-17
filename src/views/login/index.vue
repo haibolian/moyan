@@ -1,9 +1,9 @@
 <template>
   <div :class="`h-100vh ${bg_grident}`">
-    <div class="login-wrapper">
-      <h1 class="lh-200px text-center">Login</h1>
+    <div class="bg-white w-358px h-588px rounded-15px pl-50px pr-50px relative top-50% left-50% transform translate--50%">
+      <h1 class="lh-200px text-center">MoYan</h1>
       <el-form :model="loginForm" labelPosition="top">
-        <el-form-item label="username">
+        <el-form-item for="und" label="username">
           <el-input v-model="loginForm.username"></el-input>
         </el-form-item>
         <el-form-item label="password">
@@ -16,10 +16,15 @@
           text-center 
           p-10px 
           mt-40px 
-          c-#fff 
-          ${bg_grident}`">Login</div>
+          c-#fff
+          cursor-pointer
+          ${bg_grident}`"
+          @click=""
+        >
+          Login
+        </div>
       </div>
-      <div class="lh-88px text-center">
+      <div class="text-center pt-40px">
         Don't have account?
         <el-link type="primary" :underline="false" @click="">sign up</el-link>
       </div>
@@ -42,20 +47,5 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  height: 100vh;
-  background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
-}
 
-.login-wrapper {
-  background-color: #fff;
-  width: 358px;
-  height: 588px;
-  border-radius: 15px;
-  padding: 0 50px;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>
