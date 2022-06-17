@@ -1,7 +1,11 @@
 <template>
   <ElConfigProvider>
     <div id="app">
-      
+      <icon>
+        <div>
+          button
+        </div>
+      </icon>
     </div>
   </ElConfigProvider>
 </template>
