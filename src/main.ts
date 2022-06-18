@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import Components from './components/index'
+import GlobalProperties from './global-properties'
 import Router from './router'
 import 'uno.css';
 
@@ -10,6 +11,7 @@ const app = createApp(App);
 
 app.use(Router)
 app.use(Components)
+app.use(GlobalProperties)
 app.mount('#root')
 
 //dark mode
