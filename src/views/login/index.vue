@@ -79,9 +79,9 @@
 <script setup lang="tsx">
 import { login } from '@/api/user'
 import { Ref } from 'vue';
+import { successMessage } from "@/utils/message"
 import { useLoginForm, useRegistryForm } from './login'
 const bg_grident = ref('bg-gradient-to-tr from-startColor-500  to-endColor-500')
-
 const login_ref: Ref = ref(null)
 const registry_ref: Ref = ref(null)
 const { loginForm, loginRules } = useLoginForm()
@@ -108,7 +108,7 @@ const handleLogin = async () => {
 }
 // forget password
 const handleForgetPassword = () => {
-
+  successMessage('test')
 }
 
 </script>
