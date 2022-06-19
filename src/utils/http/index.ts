@@ -38,7 +38,7 @@ class MoyanHttp {
 }
 
 const httpConfig: AxiosRequestConfig = {
-  baseURL: 'http://localhost:3333',
+  baseURL: '',
   timeout: 5000,
   headers: {
     Authorization: 'bearer ' + 'token'

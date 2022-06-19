@@ -101,10 +101,12 @@ const jumpToRegistry = () => {
 }
 
 const handleLogin = async () => {
-  await login({
+  const result = await login({
     username: loginForm.username,
     password: loginForm.password
   })
+  console.log(result,'result');
+  
 }
 // forget password
 const handleForgetPassword = () => {
