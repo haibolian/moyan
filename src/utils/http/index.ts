@@ -1,10 +1,13 @@
 import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { MoyanRequestConfig } from './type.d'
 import NProgress from 'nprogress';
+import { ElLoading, ElLoadingService } from "element-plus"
+import 'element-plus/es/components/loading/style/index';
 
 class MoyanHttp {
   public instance: AxiosInstance
   public actionConfig: MoyanRequestConfig
+  public loading: any
   constructor(options: AxiosRequestConfig, actionConfig: MoyanRequestConfig = {
     withLoading: true
   }) {
@@ -15,6 +18,9 @@ class MoyanHttp {
   }
   private httpInterceptorRequest(): void {
     this.instance.interceptors.request.use((config: AxiosRequestConfig) => {
+      this.loading = ElLoading.service({
+        fullscreen: true,
+      })
       NProgress.start()
       return config
     })
@@ -22,6 +28,7 @@ class MoyanHttp {
   private httpInterceptorResponse() {
     this.instance.interceptors.response.use((response: AxiosResponse) => {
       NProgress.done()
+      this.loading.close()
       return response.data
     }, (error: AxiosError) => {
       NProgress.done()
