@@ -1,6 +1,7 @@
 <template>
   <div :class="`h-100vh ${bg_grident}`">
-    <div class="bg-#ffffff80  backdrop-filter backdrop-blur-10px w-358px h-588px rounded-15px pl-50px pr-50px relative top-50% left-50% transform translate--50%">
+    <div
+      class="bg-#ffffff80  backdrop-filter backdrop-blur-10px w-358px h-588px rounded-15px pl-50px pr-50px relative top-50% left-50% transform translate--50%">
       <h1 class="lh-100px text-center">MoYan</h1>
       <!-- login panel -->
       <div key="login" v-if="isLogin" class="mt-50px">
@@ -43,24 +44,18 @@
               <IconifyOnline icon="bxs:lock-alt" />
               <span> 确认密码</span>
             </template>
-            <el-input type="password" clearable show-password maxlength="30" v-model="registryForm.confirmPassword"></el-input>
+            <el-input type="password" clearable show-password maxlength="30" v-model="registryForm.confirmPassword">
+            </el-input>
           </el-form-item>
         </el-form>
       </div>
       <!-- button login & regiresty  -->
       <div class="form-wrapper">
-        <div
-          v-if="isLogin"
-          :class="`text-center p-8px mt-40px c-#fff cursor-pointer  ${bg_grident}`"
-          @click="handleLogin"
-        >
+        <div v-if="isLogin" :class="`text-center p-8px mt-40px c-#fff cursor-pointer  ${bg_grident}`"
+          @click="handleLogin">
           登录
         </div>
-        <div 
-          v-else
-          :class="` text-center  p-8px  mt-40px c-#fff cursor-pointer ${bg_grident}`"
-          @click="handleLogin"
-        >
+        <div v-else :class="` text-center  p-8px  mt-40px c-#fff cursor-pointer ${bg_grident}`" @click="handleRegistry">
           注册
         </div>
       </div>
@@ -81,16 +76,17 @@ import { successMessage } from "@/utils/message"
 import { useLoginForm } from './login'
 import { useRegistryForm } from './registry'
 const bg_grident = ref('bg-gradient-to-tr from-startColor-500  to-endColor-500')
-const { 
-  loginForm, 
+const {
+  loginForm,
   loginRules,
   handleLogin,
   login_ref
 } = useLoginForm()
-const { 
+const {
   registryForm,
   registryRules,
-  registry_ref
+  registry_ref,
+  handleRegistry
 } = useRegistryForm()
 
 // 登录注册转换
@@ -120,5 +116,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
