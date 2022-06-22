@@ -3,6 +3,7 @@ import { MockMethod } from "vite-plugin-mock"
 export default {
   url: "/user/registry",
   method: "post",
+  timeout: 500,
   response: ({ query }) => {
     return {
       code: 200,

@@ -3,6 +3,7 @@ import { MockMethod } from 'vite-plugin-mock'
 export default {
   url: '/user/login',
   method: 'post',
+  timeout: 500,
   response: ({ query }) => {
     return {
       code: 200,
@@ -12,5 +13,5 @@ export default {
       success: true,
       message: '登录成功',
     }
-  } 
+  }
 } as MockMethod
