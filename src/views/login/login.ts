@@ -1,11 +1,27 @@
-import { reactive } from 'vue'
+import { reactive, Ref } from 'vue'
+import { FormRules, FormInstance } from 'element-plus'
+import { errorMessage } from '@/utils/message'
+import { login } from '@/api/user'
 
 const useLoginForm = () => {
+  const login_ref: Ref = ref<FormInstance>()
   const loginForm = reactive({
     username: '',
     password: ''
   })
-  const loginRules = reactive({
+
+  const handleLogin = async () => {
+    const valid = await login_ref.value.validate()
+    if(!valid) return
+    const { data, message, success }  = await login({
+      username: loginForm.username,
+      password: loginForm.password
+    })
+    if(!success) return errorMessage(message)
+    
+  }
+
+  const loginRules = reactive<FormRules>({
     username: [
       { required: true, message: '用户名不能为空', trigger: 'blur' },
       { min: 5, max: 20, message: '长度在 5 到 20 个字符', trigger: 'blur' }
@@ -18,41 +34,11 @@ const useLoginForm = () => {
 
   return {
     loginForm,
-    loginRules
+    loginRules,
+    login_ref,
+    handleLogin
   }
 }
 
-const useRegistryForm = () => {
-  const registryForm = reactive({
-    username: '',
-    password: '',
-    confirmPassword: ''
-  })
 
-  const validateConfirmPass = (rule: object[], value: string, callback: (str: any) => void) => {
-    const isSame = value === registryForm.password
-    callback(isSame ? undefined : new Error('两个密码不一致'))
-  }
-
-  const registryRules = reactive({
-    username: [
-      { required: true, message: '用户名不能为空', trigger: 'blur' },
-      { min: 5, max: 20, message: '长度在 5 到 20 个字符', trigger: 'blur' }
-    ],
-    password: [
-      { required: true, message: '密码不能为空', trigger: 'blur' },
-      { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' },
-    ],
-    confirmPassword: [
-      { required: true, message: '确认密码不能为空', trigger: 'blur' },
-      { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' },
-      { validator: validateConfirmPass, trigger: 'blur' }
-    ]
-  })
-  return {
-    registryForm,
-    registryRules
-  }
-}
-
-export { useLoginForm, useRegistryForm }
+export { useLoginForm }

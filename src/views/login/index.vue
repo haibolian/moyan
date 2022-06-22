@@ -1,6 +1,6 @@
 <template>
   <div :class="`h-100vh ${bg_grident}`">
-    <div class="bg-white w-358px h-588px rounded-15px pl-50px pr-50px relative top-50% left-50% transform translate--50%">
+    <div class="bg-#ffffff80  backdrop-filter backdrop-blur-10px w-358px h-588px rounded-15px pl-50px pr-50px relative top-50% left-50% transform translate--50%">
       <h1 class="lh-100px text-center">MoYan</h1>
       <!-- login panel -->
       <div key="login" v-if="isLogin" class="mt-50px">
@@ -77,15 +77,21 @@
 </template>
 
 <script setup lang="tsx">
-import { login } from '@/api/user'
-import { Ref } from 'vue';
 import { successMessage } from "@/utils/message"
-import { useLoginForm, useRegistryForm } from './login'
+import { useLoginForm } from './login'
+import { useRegistryForm } from './registry'
 const bg_grident = ref('bg-gradient-to-tr from-startColor-500  to-endColor-500')
-const login_ref: Ref = ref(null)
-const registry_ref: Ref = ref(null)
-const { loginForm, loginRules } = useLoginForm()
-const { registryForm, registryRules } = useRegistryForm()
+const { 
+  loginForm, 
+  loginRules,
+  handleLogin,
+  login_ref
+} = useLoginForm()
+const { 
+  registryForm,
+  registryRules,
+  registry_ref
+} = useRegistryForm()
 
 // 登录注册转换
 const currentMode = ref('login')
@@ -100,14 +106,7 @@ const jumpToRegistry = () => {
   login_ref.value.resetFields()
 }
 
-const handleLogin = async () => {
-  const result = await login({
-    username: loginForm.username,
-    password: loginForm.password
-  })
-  console.log(result,'result');
-  
-}
+
 // forget password
 const handleForgetPassword = () => {
   successMessage('test')
