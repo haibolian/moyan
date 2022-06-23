@@ -1,0 +1,23 @@
+.layout {
+  position: relative;
+  height: 100%;
+}
+
+.sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  padding: 20px;
+}
+
+.main-container {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 300px;
+  width: calc(100% - 300px);
+  min-height: 100vh;
+}

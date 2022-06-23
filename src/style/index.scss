@@ -1,14 +1,19 @@
 @import './dark.scss';
+@import './layout.scss';
 
 * {
   padding: 0;
   margin: 0;
 }
 
-html body{
+html body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+}
+
+body {
+  background-color: #d1d9dc;
 }
 
 ul {
