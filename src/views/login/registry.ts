@@ -2,6 +2,8 @@ import { Ref } from "vue"
 import { FormInstance, FormRules } from "element-plus"
 import { errorMessage } from "@/utils/message"
 import { registry } from "@/api/user"
+import { init } from "./helper"
+
 
 const useRegistryForm = () => {
   const registry_ref: Ref = ref<FormInstance>()
@@ -19,6 +21,7 @@ const useRegistryForm = () => {
       password: registryForm.password,
     })
     if (!success) return errorMessage(message)
+    init(data)
   }
 
   const validateConfirmPass = (

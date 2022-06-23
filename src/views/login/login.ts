@@ -2,6 +2,7 @@ import { reactive, Ref } from 'vue'
 import { FormRules, FormInstance } from 'element-plus'
 import { errorMessage } from '@/utils/message'
 import { login } from '@/api/user'
+import { init } from './helper'
 
 const useLoginForm = () => {
   const login_ref: Ref = ref<FormInstance>()
@@ -12,13 +13,13 @@ const useLoginForm = () => {
 
   const handleLogin = async () => {
     const valid = await login_ref.value.validate()
-    if(!valid) return
-    const { data, message, success }  = await login({
+    if (!valid) return
+    const { data, message, success } = await login({
       username: loginForm.username,
       password: loginForm.password
     })
-    if(!success) return errorMessage(message)
-    
+    if (!success) return errorMessage(message)
+    init(data)
   }
 
   const loginRules = reactive<FormRules>({

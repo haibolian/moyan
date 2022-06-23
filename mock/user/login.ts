@@ -8,7 +8,8 @@ export default {
     return {
       code: 200,
       data: {
-        token: 'cxmlvkwiepruwoerij22wdxv.xzcsklefnsdmfnk23.nvkldufhf32woeijf2',
+        username: '用户123',
+        accessToken: 'cxmlvkwiepruwoerij22wdxv.xzcsklefnsdmfnk23.nvkldufhf32woeijf2',
       },
       success: true,
       message: '登录成功',
