@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-wapper bg-#ffffff90 rounded-28px backdrop-filter backdrop-blur-xl h-100%">
+  <div>
 
   </div>
 </template>
@@ -10,7 +10,7 @@
 
 <script lang='ts'>
 export default {
-  name: 'SideBar'
+  name: 'CreateTodoButton'
 }
 </script>
 

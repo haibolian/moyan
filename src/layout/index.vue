@@ -13,7 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import SideBar from './components/sidebar.vue'
+import SideBar from './sidebar/index.vue'
+const sidebarWidth = ref('330px')
 </script>
 <script lang="ts">
 export default {
@@ -21,4 +22,28 @@ export default {
 }
 </script>
 <style scoped>
+.layout {
+  position: relative;
+  height: 100%;
+  --sidebar-width: v-bind(sidebarWidth);
+}
+
+.sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  padding: 20px;
+}
+
+.main-container {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+}
 </style>
