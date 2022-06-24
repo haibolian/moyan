@@ -34,7 +34,7 @@ export default {
   top: 0;
   left: 0;
   width: var(--sidebar-width);
-  height: 100%;
+  height: 100vh;
   padding: 20px;
 }
 
