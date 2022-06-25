@@ -26,7 +26,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: ['vue', 'vue-router', '@vueuse/core'],
       dts: 'src/auto-import.d.ts'
     }),
     Components({
