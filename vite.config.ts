@@ -14,6 +14,14 @@ export default defineConfig({
       '@': '/src',
     }
   },
+	css: {
+		preprocessorOptions: {
+			scss: {
+				// 自定义的主题色
+				additionalData: `@use "@/style/element/index.scss" as *;`,
+			},
+		},
+  },
   plugins: [
     vue(),
     vueJsx(),
@@ -22,7 +30,9 @@ export default defineConfig({
       dts: 'src/auto-import.d.ts'
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver({
+        importStyle: "sass",
+      })]
     }),
     Unocss({
       theme: {
