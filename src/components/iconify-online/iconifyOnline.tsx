@@ -12,7 +12,7 @@ export default defineComponent({
     },
     size: {
       type: [String],
-      default: '24px'
+      default: '22px'
     }
   },
   render() {
