@@ -9,21 +9,29 @@ export default defineComponent({
     icon: {
       type: String,
       default: ""
+    },
+    size: {
+      type: [String],
+      default: '24px'
     }
   },
   render() {
     const attrs = this.$attrs;
+
     return h(
       'span',
       {
+        class: 'iconify-online',
         style: {
-          verticalAlign: 'middle'
+          verticalAlign: 'middle',
+          fontSize: this.size
         }
       },
       [
         h(
           IconifyIcon,
           {
+            inline: true,
             icon: `${this.icon}`,
             ...attrs
           },
