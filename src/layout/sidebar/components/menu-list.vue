@@ -6,6 +6,7 @@
       :collapse="false"
       background-color="none"
       :style="elMenuThemeConfig"
+      class="font-bold"
     >
       <el-menu-item index="1">
         <IconifyOnline class="ml-1px" size="23px" icon="uim:apps" />
