@@ -9,7 +9,7 @@
       <PlainTodo></PlainTodo>
       <MyBar px="2px" py="8px" height="0"></MyBar>
       <PlainSetting></PlainSetting>
-      <MyBar px="2px" py="8px" height="0"></MyBar>
+      <MyBar px="2px" py="10px" height="0"></MyBar>
       <CreateTodoButton></CreateTodoButton>
     </div>
   </div>

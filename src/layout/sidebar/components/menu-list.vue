@@ -59,7 +59,7 @@ const elMenuThemeConfig = reactive({
   '--el-menu-hover-bg-color': '#00000010',
   '--el-menu-hover-text-color': '#000',
   '--el-menu-border-color': 'none',
-  '--el-menu-item-height': '50px'
+  '--el-menu-item-height': '45px'
 //   --el-menu-sub-item-height: calc(var(--el-menu-item-height) - 6px);
 //   --el-menu-horizontal-sub-item-height: 36px;
 //   --el-menu-item-font-size: var(--el-font-size-base);
@@ -85,7 +85,7 @@ export default {
   padding-left: 12px !important;
   width: 114%;
   margin-left: -7%;
-  border-radius: 18px;
+  border-radius: 13px;
 }
 .el-menu-item.is-active {
   background-color: var(--el-menu-active-bg-color);
