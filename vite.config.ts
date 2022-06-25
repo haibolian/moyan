@@ -34,14 +34,7 @@ export default defineConfig({
         importStyle: "sass",
       })]
     }),
-    Unocss({
-      theme: {
-        colors: {
-          'startColor': '#a6c1ee',
-          'endColor': '#fbc2eb',
-        }
-      }
-    }),
+    Unocss(),
     viteMockServe({
       mockPath: './mock',
       logger: false
