@@ -5,8 +5,11 @@
       <PlainUser></PlainUser>
       <MyBar px="2px" py="28px"></MyBar>
       <MenuList></MenuList>
+      <MyBar p="15px 2px 28px"></MyBar>
       <PlainTodo></PlainTodo>
+      <MyBar px="2px" py="8px" height="0"></MyBar>
       <PlainSetting></PlainSetting>
+      <MyBar px="2px" py="8px" height="0"></MyBar>
       <CreateTodoButton></CreateTodoButton>
     </div>
   </div>
