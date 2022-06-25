@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar-wapper bg-#ffffff90 rounded-28px backdrop-filter backdrop-blur-xl h-100%">
-    <div class="p-20px">
+    <div class="p-28px">
       <HeaderBar></HeaderBar>
-      <MyBar px="6px"></MyBar>
       <PlainUser></PlainUser>
+      <MyBar px="2px" py="28px"></MyBar>
       <MenuList></MenuList>
       <PlainTodo></PlainTodo>
       <PlainSetting></PlainSetting>
