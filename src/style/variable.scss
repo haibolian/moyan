@@ -7,6 +7,9 @@ html {
   --my-bgc-deep: #fff;
   --my-bgc-shallow: #00000020;
   --my-active-color: #3182ff;
+  --my-bgc-hover: #d7d7d7;
+  --my-bgc-hover-shallow: #777777;
+
 }
 
 html.dark {
@@ -17,4 +20,6 @@ html.dark {
   --my-bgc-deep: #00000030;
   --my-bgc-shallow: #ffffff20;
   --my-active-color: #406aaa;
+  --my-bgc-hover: #ffffff20;
+  --my-bgc-hover-shallow: #ffffff10;
 }

@@ -1,7 +1,9 @@
 <template>
     <div>
-      <p class="text-12px mb-10px font-bold colorvar-my-c-shallow">setting: 6</p>
-      <ul class="bgcvar-my-bgc-deep p-10px rounded-13px flex justify-between colorvar-my-c-normal">
+      <p :class="`text-12px mb-10px font-bold colorvar-my-c-shallow ${isCollapse && 'text-center'}`">setting: 6</p>
+      <ul :class="`bgcvar-my-bgc-deep p-10px rounded-13px flex justify-between colorvar-my-c-normal
+        ${isCollapse && 'h-128px overflow-scroll flex-col items-center'}
+        `">
         <li 
           v-for="setting in settings"
           :class="liStyle"
@@ -22,6 +24,7 @@
 </template>
 
 <script setup lang='ts'>
+import { isCollapse } from '@/hooks/useCollapse'
 import { toggleDark } from '@/utils/dark'
 const liStyle = 'hover:bgcvar-my-bgc-shallow rounded-6px p-4px'
 const settings = reactive([

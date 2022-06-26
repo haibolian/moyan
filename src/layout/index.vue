@@ -14,7 +14,13 @@
 
 <script setup lang="ts">
 import SideBar from './sidebar/index.vue'
-const sidebarWidth = ref('330px')
+import { isCollapse } from "@/hooks/useCollapse"
+const sidebarWidth = ref('330px');
+
+watch(isCollapse, (val) => {
+  sidebarWidth.value = val ? '146px' : '330px'
+})
+
 </script>
 <script lang="ts">
 export default {

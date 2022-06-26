@@ -1,9 +1,9 @@
 <template>
   <div id="my-menu-list">
-    <p class="text-12px mb-10px font-bold colorvar-my-c-shallow">menu: 6</p>
+    <p :class="`text-12px mb-10px font-bold colorvar-my-c-shallow ${isCollapse && 'text-center'}`">menu: 6</p>
     <el-menu
       default-active="2"
-      :collapse="false"
+      :collapse="isCollapse"
       background-color="none"
       class="font-bold"
     >
@@ -50,6 +50,16 @@
 </template>
 
 <script setup lang='ts'>
+import { isCollapse } from '@/hooks/useCollapse'
+
+const w = ref('114%')
+const ml = ref('-7%')
+
+watch(isCollapse, () =>{ 
+  w.value = isCollapse.value ? '80%' : '114%';
+  ml.value = isCollapse.value ? '10%' : '-7%';
+})
+
 </script>
 
 <script lang='ts'>
@@ -58,15 +68,18 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .el-menu-item * {
   vertical-align: middle;
 }
 .el-menu-item {
-  padding-left: 12px !important;
-  width: 114%;
-  margin-left: -7%;
+  width: v-bind(w);
+  margin-left: v-bind(ml);
   border-radius: 13px;
+}
+:deep(.el-menu-tooltip__trigger) {
+  justify-content: center;
+
 }
 .el-menu-item.is-active {
   background-color: var(--el-menu-active-bg-color);

@@ -21,7 +21,7 @@ export default defineConfig({
     }
   },
   shortcuts: {
-    'overflow-ellipsis': 'whitespace-nowrap overflow-ellipsis overflow-hidden'
+    'test-overflow-ellipsis': 'whitespace-nowrap  text-ellipsis overflow-hidden'
   },
   rules: 
   [
