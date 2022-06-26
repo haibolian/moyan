@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
     <nav class="sidebar">
+      <!-- transition-width-300  ease-in-out -->
       <SideBar></SideBar>
     </nav>
     <main class="main-container">

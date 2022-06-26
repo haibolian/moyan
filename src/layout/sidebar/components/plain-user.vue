@@ -5,7 +5,7 @@
         src="https://avatars.githubusercontent.com/u/51857421?v=4">
       </el-avatar>
     </div>
-    <div v-show="!isCollapse" class="flex flex-1 justify-center flex-col ml-15px">
+    <div v-show="!isCollapse" class="flex flex-1 justify-center flex-col ml-15px overflow-hidden">
       <div class="colorvar-my-c-shallow text-11px font-bold">Good Day👏</div>
       <h1 class="">Vitaliy D.</h1>
     </div>

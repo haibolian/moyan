@@ -5,6 +5,7 @@
       default-active="2"
       :collapse="isCollapse"
       background-color="none"
+      :collapse-transition="false"
       class="font-bold"
     >
       <el-menu-item index="1">
