@@ -9,13 +9,6 @@
       <PlainTodo></PlainTodo>
       <PlainSetting class="mt-20px"></PlainSetting>
       <CreateTodoButton class="mt-20px"></CreateTodoButton>
-      
-      <div
-        class="absolute right-0 top-50px bg-#fff py-8px rounded-tl-lg rounded-bl-lg cursor-pointer"
-        @click="toggleCollapse"
-      >
-        <IconifyOnline icon="eva:arrow-left-fill" />
-      </div>
     </div>
   </div>
 </template>
@@ -27,7 +20,7 @@ import CreateTodoButton from "./components/create-todo-button.vue";
 import PlainSetting from "./components/plain-setting.vue";
 import PlainTodo from "./components/plain-todo.vue";
 import MenuList from "./components/menu-list.vue";
-import { toggleCollapse, isCollapse } from '@/hooks/useCollapse';
+import { isCollapse } from '@/hooks/useCollapse';
 
 
 </script>
