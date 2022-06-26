@@ -25,7 +25,7 @@ export default defineConfig({
   },
   rules: 
   [
-    [/^colorvar-(\S+)$/, ([, d]) => ({ content: `${d}`, color: `var(--${d})` })],
+    [/^colorvar-(\S+)$/, ([, d]) => ({ color: `var(--${d})` })],
     [/^bgcvar-(\S+)$/, ([, d]) => ({ background: `var(--${d})` })],
     ['avatar-shadow', {
       'box-shadow': '0px 0px 0px 5px #fff'

@@ -6,25 +6,33 @@
           v-for="setting in settings"
           class="hover:bg-#edeef2 focus:bg-#edeef2 rounded-6px p-4px"
         >
-          <IconifyOnline size="22px" :icon="setting.icon"/>
+          <IconifyOnline size="22px" :icon="setting.icon" />
+        </li>
+        <li 
+          class="hover:bg-#edeef2 focus:bg-#edeef2 rounded-6px p-4px"
+        >
+          <IconifyOnline
+            size="22px" 
+            icon="carbon:asleep-filled" 
+            dark-icon="carbon:light-filled"
+            @click="toggleDark()"/>
         </li>
       </ul>
-    <el-button @click="toggleDark()">切换</el-button>
     </div>
 </template>
 
 <script setup lang='ts'>
+import { toggleDark } from '@/utils/dark'
+// const isDark = useDark()
+// const toggleDark = useToggle(isDark)
 const settings = reactive([
   {icon: 'uim:airplay'},
   {icon: 'uim:layer-group'},
   {icon: 'uim:lock'},
   {icon: 'uim:telegram-alt'},
   {icon: 'uim:user-nurse'},
-  {icon: 'carbon:light-filled'},
 ])
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
 
 
 </script>
