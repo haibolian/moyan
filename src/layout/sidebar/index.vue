@@ -5,7 +5,7 @@
       <PlainUser></PlainUser>
       <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30"/>
       <MenuList></MenuList>
-      <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30"/>
+      <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30 mt-18px"/>
       <PlainTodo></PlainTodo>
       <PlainSetting class="mt-20px"></PlainSetting>
       <CreateTodoButton class="mt-20px"></CreateTodoButton>

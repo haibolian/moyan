@@ -11,39 +11,39 @@
       <el-menu-item index="1">
         <IconifyOnline class="ml-1px" size="23px" icon="uim:apps" />
         <template #title>
-          <span class="pl-10px">Navigator Two</span>
+          <span class="pl-10px">首页</span>
         </template>
       </el-menu-item>    
       <el-menu-item index="2">
         <IconifyOnline icon="ri:edit-box-fill" />
         <template #title>
-          <span class="pl-10px">Speak Some</span>
+          <span class="pl-10px">说说</span>
         </template>
       </el-menu-item>
       <el-menu-item index="3">
         <IconifyOnline icon="uim:scenery" />
         <template #title>
-          <span class="pl-10px">My Picture</span>
+          <span class="pl-10px">相册</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="6">
+        <IconifyOnline size="26px" icon="bxs:notification" />
+        <template #title>
+          <span class="pl-10px">日志</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="5">
+        <IconifyOnline icon="ph:notebook-fill" />
+        <template #title>
+          <span class="pl-10px">待办</span>
         </template>
       </el-menu-item>
       <el-menu-item index="4">
         <IconifyOnline icon="uim:check-square" />
         <template #title>
           <div class='flex-1 flex justify-between'>
-            <span class="pl-10px">Add Task</span>
+            <span class="pl-10px">留言板</span>
           </div>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <IconifyOnline icon="ph:notebook-fill" />
-        <template #title>
-          <span class="pl-10px">Navigator Two</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="6">
-        <IconifyOnline size="26px" icon="bxs:notification" />
-        <template #title>
-          <span class="pl-10px">Navigator Two</span>
         </template>
       </el-menu-item>
     </el-menu>
