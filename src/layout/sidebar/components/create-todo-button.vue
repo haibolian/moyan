@@ -1,5 +1,5 @@
 <template>
-  <div class="bgcvar-my-bgc-deep rounded-13px p-20px pt-15px text-center">
+  <div class="select-none bgcvar-my-bgc-deep rounded-13px p-20px pt-15px text-center">
     <IconifyOnline size="4em" icon="carbon:add-filled" color="#2f82ff" />
     <h3 class="colorvar-my-c-deep">Create New Task</h3>
     <p class="pt-4px font-bold colorvar-my-c-shallow text-12px">
