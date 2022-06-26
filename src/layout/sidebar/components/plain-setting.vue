@@ -4,12 +4,12 @@
       <ul class="bgcvar-my-bgc-deep p-10px rounded-13px flex justify-between colorvar-my-c-normal">
         <li 
           v-for="setting in settings"
-          class="hover:bg-#edeef2 focus:bg-#edeef2 rounded-6px p-4px"
+          :class="liStyle"
         >
           <IconifyOnline size="22px" :icon="setting.icon" />
         </li>
         <li 
-          class="hover:bg-#edeef2 focus:bg-#edeef2 rounded-6px p-4px"
+          :class="liStyle"
         >
           <IconifyOnline
             size="22px" 
@@ -23,8 +23,7 @@
 
 <script setup lang='ts'>
 import { toggleDark } from '@/utils/dark'
-// const isDark = useDark()
-// const toggleDark = useToggle(isDark)
+const liStyle = 'hover:bgcvar-my-bgc-shallow rounded-6px p-4px'
 const settings = reactive([
   {icon: 'uim:airplay'},
   {icon: 'uim:layer-group'},

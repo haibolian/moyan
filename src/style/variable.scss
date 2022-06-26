@@ -5,7 +5,8 @@ html {
   --my-c-shallow: #00000070;
   --my-bgc-normal: #ffffff90;
   --my-bgc-deep: #fff;
-  --my-bgc-shallow: #ffffff;
+  --my-bgc-shallow: #00000020;
+  --my-active-color: #3182ff;
 }
 
 html.dark {
@@ -14,5 +15,6 @@ html.dark {
   --my-c-shallow: #ffffff70;
   --my-bgc-normal: #3e4352;
   --my-bgc-deep: #00000030;
-  --my-bgc-shallow: #ffffff;
+  --my-bgc-shallow: #ffffff20;
+  --my-active-color: #3364ad;
 }

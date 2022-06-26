@@ -24,9 +24,9 @@
 .el-menu {
   --el-menu-bg-color: none;
   --el-menu-active-color : #eee;
-  --el-menu-active-bg-color: #3182ff;
+  --el-menu-active-bg-color: var(--my-active-color);
   --el-menu-text-color : var(--my-c-normal);
-  --el-menu-hover-bg-color: #00000010 !important;
+  --el-menu-hover-bg-color: var(--my-bgc-shallow) !important; 
   --el-menu-hover-text-color: #000;
   --el-menu-border-color: none;
   --el-menu-item-height: 45px
