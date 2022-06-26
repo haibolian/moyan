@@ -1,11 +1,10 @@
 <template>
   <div id="my-menu-list">
-    <p class="text-12px mb-10px font-bold color-#00000070">menu: 6</p>
+    <p class="text-12px mb-10px font-bold colorvar-my-c-shallow">menu: 6</p>
     <el-menu
       default-active="2"
       :collapse="false"
       background-color="none"
-      :style="elMenuThemeConfig"
       class="font-bold"
     >
       <el-menu-item index="1">
@@ -51,24 +50,6 @@
 </template>
 
 <script setup lang='ts'>
-const elMenuThemeConfig = reactive({
-  '--el-menu-bg-color': 'none',
-  '--el-menu-active-color' : '#fff',
-  '--el-menu-active-bg-color': '#3182ff',
-  '--el-menu-text-color' : '#00000070',
-  '--el-menu-hover-bg-color': '#00000010',
-  '--el-menu-hover-text-color': '#000',
-  '--el-menu-border-color': 'none',
-  '--el-menu-item-height': '45px'
-//   --el-menu-sub-item-height: calc(var(--el-menu-item-height) - 6px);
-//   --el-menu-horizontal-sub-item-height: 36px;
-//   --el-menu-item-font-size: var(--el-font-size-base);
-//   --el-menu-item-hover-fill: var(--el-color-primary-light-9);
-//   --el-menu-base-level-padding: 20px;
-//   --el-menu-level-padding: 20px;
-//   --el-menu-icon-transform-closed: none;
-//   --el-menu-icon-transform-open: rotateZ(180deg)
-})
 </script>
 
 <script lang='ts'>

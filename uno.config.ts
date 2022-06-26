@@ -17,7 +17,7 @@ export default defineConfig({
   theme: {
     colors: {
       'startColor': '#a6c1ee',
-      'endColor': '#fbc2eb'
+      'endColor': '#fbc2eb',
     }
   },
   shortcuts: {
@@ -25,6 +25,14 @@ export default defineConfig({
   },
   rules: 
   [
+    [/^colorvar-(\S+)$/, ([, d]) => ({ content: `${d}`, color: `var(--${d})` })],
+    [/^bgcvar-(\S+)$/, ([, d]) => ({ background: `var(--${d})` })],
+    ['avatar-shadow', {
+      'box-shadow': '0px 0px 0px 5px #fff'
+    }],
+    ['avatar-dark-shadow', {
+      'box-shadow': '0px 0px 0px 5px #888'
+    }]
     // For example:
     // ['overflow-ellipsis', {
     //   'white-space': 'nowrap',

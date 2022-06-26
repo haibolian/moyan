@@ -1,16 +1,14 @@
 <template>
-  <div class="sidebar-wapper bg-#ffffff90 rounded-28px backdrop-filter backdrop-blur-xl h-100%">
+  <div class="sidebar-wapper bgcvar-my-bgc-normal rounded-28px backdrop-filter backdrop-blur-xl h-100%">
     <div class="p-28px">
       <HeaderBar></HeaderBar>
       <PlainUser></PlainUser>
-      <MyBar px="2px" py="28px"></MyBar>
+      <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30"/>
       <MenuList></MenuList>
-      <MyBar p="15px 2px 28px"></MyBar>
+      <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30"/>
       <PlainTodo></PlainTodo>
-      <MyBar px="2px" py="8px" height="0"></MyBar>
-      <PlainSetting></PlainSetting>
-      <MyBar px="2px" py="10px" height="0"></MyBar>
-      <CreateTodoButton></CreateTodoButton>
+      <PlainSetting class="mt-20px"></PlainSetting>
+      <CreateTodoButton class="mt-20px"></CreateTodoButton>
     </div>
   </div>
 </template>

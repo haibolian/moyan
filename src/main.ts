@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import Components from './components/index'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import GlobalProperties from './global-properties'
 import Router from './router'
 import 'uno.css';

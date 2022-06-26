@@ -1,0 +1,18 @@
+html {
+  --my: red;
+  --my-c-normal: #666666;
+  --my-c-deep: #444444;
+  --my-c-shallow: #00000070;
+  --my-bgc-normal: #ffffff90;
+  --my-bgc-deep: #fff;
+  --my-bgc-shallow: #ffffff;
+}
+
+html.dark {
+  --my-c-normal: #ccc;
+  --my-c-deep: #ffffff87;
+  --my-c-shallow: #ffffff70;
+  --my-bgc-normal: #3e4352;
+  --my-bgc-deep: #00000030;
+  --my-bgc-shallow: #ffffff;
+}
