@@ -2,43 +2,44 @@
   <div id="my-menu-list">
     <p :class="`text-12px mb-10px font-bold colorvar-my-c-shallow ${isCollapse && 'text-center'}`">menu: 6</p>
     <el-menu
-      default-active="2"
+      default-active="home"
       :collapse="isCollapse"
       background-color="none"
       :collapse-transition="false"
       class="font-bold"
+      router
     >
-      <el-menu-item index="1">
+      <el-menu-item index="home">
         <IconifyOnline class="ml-1px" size="23px" icon="uim:apps" />
         <template #title>
           <span class="pl-10px">首页</span>
         </template>
       </el-menu-item>    
-      <el-menu-item index="2">
+      <el-menu-item index="speak">
         <IconifyOnline icon="ri:edit-box-fill" />
         <template #title>
           <span class="pl-10px">说说</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="album">
         <IconifyOnline icon="uim:scenery" />
         <template #title>
           <span class="pl-10px">相册</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="6">
+      <el-menu-item index="journal">
         <IconifyOnline size="26px" icon="bxs:notification" />
         <template #title>
           <span class="pl-10px">日志</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item index="todo">
         <IconifyOnline icon="ph:notebook-fill" />
         <template #title>
           <span class="pl-10px">待办</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="message">
         <IconifyOnline icon="uim:check-square" />
         <template #title>
           <div class='flex-1 flex justify-between'>
