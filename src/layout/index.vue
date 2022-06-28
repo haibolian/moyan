@@ -46,6 +46,7 @@ export default {
 }
 
 .main-container {
+  padding: 20px;
   box-sizing: border-box;
   position: relative;
   top: 0;
