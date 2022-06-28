@@ -2,7 +2,7 @@
   <div id="my-menu-list">
     <p :class="`text-12px mb-10px font-bold colorvar-my-c-shallow ${isCollapse && 'text-center'}`">menu: 6</p>
     <el-menu
-      default-active="home"
+      :default-active="defaultActive"
       :collapse="isCollapse"
       background-color="none"
       :collapse-transition="false"
@@ -53,6 +53,8 @@
 
 <script setup lang='ts'>
 import { isCollapse } from '@/hooks/useCollapse'
+const router = useRouter()
+const defaultActive = ref(router.currentRoute.value.name)
 
 const w = ref('114%')
 const ml = ref('-7%')
