@@ -22,14 +22,78 @@
       </div>
     </footer>
   </article>
-  <CommentArea></CommentArea>
+  <CommentPanel :data="commentList"/>
 </template>
 
 <script setup lang='ts'>
-import CommentArea from '@/components/comment-area/index.vue'
-const data = reactive({
-  
-})
+import CommentPanel from '@/components/comment-panel/index.vue'
+const commentList = reactive([{
+  id: 1,
+  name: '凌凡',
+  time: '2022年6月28日  11:22',
+  to: null,
+  content: '博主，你好！',
+  reply: [
+    {
+      id: 1,
+      name: '博主',
+      time: '2022年6月28日  11:22',
+      to: '凌凡',
+      content: '凌凡，你好！'
+    },
+    {
+      id: 2,
+      name: '凌凡',
+      time: '2022年6月28日  11:22',
+      to: '博主',
+      content: '你竟然回复我了，好开心'
+    }
+  ]
+},{
+  id: 1,
+  name: '凌凡',
+  time: '2022年6月28日  11:22',
+  to: null,
+  content: '博主，你好！',
+  reply: [
+    {
+      id: 1,
+      name: '博主',
+      time: '2022年6月28日  11:22',
+      to: '凌凡',
+      content: '凌凡，你好！'
+    },
+    {
+      id: 2,
+      name: '凌凡',
+      time: '2022年6月28日  11:22',
+      to: '博主',
+      content: '你竟然回复我了，好开心'
+    }
+  ]
+},{
+  id: 1,
+  name: '凌凡',
+  time: '2022年6月28日  11:22',
+  to: null,
+  content: '博主，你好！',
+  reply: [
+    {
+      id: 1,
+      name: '博主',
+      time: '2022年6月28日  11:22',
+      to: '凌凡',
+      content: '凌凡，你好！'
+    },
+    {
+      id: 2,
+      name: '凌凡',
+      time: '2022年6月28日  11:22',
+      to: '博主',
+      content: '你竟然回复我了，好开心'
+    }
+  ]
+}])
 </script>
 
 <script lang='ts'>

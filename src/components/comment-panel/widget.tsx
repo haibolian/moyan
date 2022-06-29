@@ -4,15 +4,18 @@ export const Commentator = (props: any) => {
   return (
     <p>
       <span>{props.name}</span>
-      <span>· 8 小时前</span>
+      {
+        props.to &&
+          <span> 回复 { props.to }</span>
+      }
+      <span>·{props.time}</span>
     </p>
   )
 }
 
 export const CommentContent = (props: any) => {
-  const qwe = inject('message')
   return (
-    <p>{qwe}</p>
+    <p>{props.content}</p>
   )
 }
 
