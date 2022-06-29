@@ -12,7 +12,7 @@
       </template>
     </div>
   </div>
-  <el-divider v-if="!props.to" class="my-10px"></el-divider>
+  <el-divider v-if="!props.to && !$attrs.isEnd" class="my-10px"></el-divider>
 </template>
 
 <script setup lang='tsx'>
