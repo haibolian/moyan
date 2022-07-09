@@ -1,12 +1,13 @@
 <template>
   <div>
+    <EditorPanel></EditorPanel>
     <SpeakPanel></SpeakPanel>
   </div>
 </template>
 
 <script setup lang='ts'>
-import SpeakPanel from "@/components/speak-panel/index.vue";
-
+const SpeakPanel = defineAsyncComponent(() => import('@/components/speak-panel/index.vue'));
+const EditorPanel = defineAsyncComponent(() => import('@/components/editor-panel/index.vue'));
 
 
 </script>
