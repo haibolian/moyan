@@ -35,9 +35,19 @@ export default defineConfig({
       })]
     }),
     Unocss(),
-    viteMockServe({
-      mockPath: './mock',
-      logger: false
-    })
+    // viteMockServe({
+    //   mockPath: './mock',
+    //   logger: false
+    // })
   ],
+  server: {
+    port: 8000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
