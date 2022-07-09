@@ -45,7 +45,7 @@ class MoyanHttp {
 }
 
 const httpConfig: AxiosRequestConfig = {
-  baseURL: '',
+  baseURL: '/api',
   timeout: 5000,
   headers: {
     Authorization: 'bearer ' + 'token'
