@@ -1,7 +1,7 @@
 <template>
   <el-popover
     ref="popoverRef"
-    placement="bottom-start" 
+    placement="bottom-start"
     popper-class="emoji-picker-popover"
     :width="450"
     trigger="click"
@@ -13,7 +13,7 @@
       </slot>
     </template>
 
-    <el-tabs class="emoji-pane" v-model="currentEmojiGroup" @tab-click="clickGroupTab">
+    <el-tabs @mousedown="mousedownPanel" @mouseup="mouseupPanel" class="emoji-pane" v-model="currentEmojiGroup" @tab-click="clickGroupTab">
       <el-tab-pane v-for="group in emojiGroup" :name="group.group" style="color:red">
         <template #label>
           <span class="text-5">{{ group.description }}</span>
@@ -40,7 +40,7 @@ const props = defineProps({
 
 })
 
-const emits = defineEmits(['select'])
+const emits = defineEmits(['select', 'mousedown-panel', 'mouseup-panel'])
 const popoverRef = ref()
 
 const emojisMap = {}
@@ -54,11 +54,16 @@ const clickGroupTab = () => {
 
 }
 
-const clickEmoji = emoji => {
+const clickEmoji = (emoji) => {
   emits('select', emoji.unicode)
-  popoverRef.value.hide()
 }
 
+const mousedownPanel = () => {
+  emits('mousedown-panel')
+}
+const mouseupPanel = () => {
+  emits('mouseup-panel')
+}
 
 
 </script>

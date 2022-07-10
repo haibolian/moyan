@@ -11,23 +11,26 @@
     >
       <div
         id="editor"
-        ref="editorContentRef"
+        ref="editorAreaRef"
         @focus="isFocus = true"
         @blur="editorBlur"
         @input="editorInput"
-        v-html="editorContent"
         class="editor__inner outline-none max-h-120px min-h-40px overflow-auto"
         contenteditable="true"
         spellcheck="false"
       />
-      <p @click="editorContentRef.focus()" class="text-right text-xs colorvar-my-c-normal font-bold">{{ wordLimit }}</p>
+      <p @click="() => {}" class="text-right text-xs colorvar-my-c-normal font-bold">{{ wordLimit }}</p>
       
     </div>
     <!-- assist -->
     <div class="pt-20px flex justify-between">
       <div class="flex-.7">
-        <EmojiPicker @select="selectEmoji">
-          <el-link @mousedown="isEmojiBtnFocus = true" @mouseup="isEmojiBtnFocus = false" @click="clickD">碧青</el-link>
+        <EmojiPicker
+          @select="insetEmoji"
+          @mousedown-panel="isEmojiBtnFocus = true"
+          @mouseup-panel="isEmojiBtnFocus = false"
+        >
+          <el-link @mousedown="isEmojiBtnFocus = true" @mouseup="isEmojiBtnFocus = false" @click="clickSelectEmojiBtn">表情</el-link>
         </EmojiPicker>
         <el-link :underline="false" class="mr-30px">
           <IconifyOnline icon="flat-color-icons:picture" size="18px" class="mr-2px" />
@@ -47,27 +50,65 @@ import { propsInstance } from './editor-panel';
 import { getCurrentCursorPosition } from '@/utils/cursor'
 import { publish } from '@/api/speak';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
+import { off } from 'process';
 
 const props = defineProps(propsInstance)
+const editorContent = ref('')
 
 // focus样式切换
 const isFocus = ref(false);
 const editorWapperFocusStyle = 'bgcvar-my-bgc-deep border-#3182ff';
 const editorWapperBlurStyle = 'bg-#f2f3f5 border-transparent';
+const rangeOfEditorArea = ref<Range>()
 
-// 双向绑定
-const editorContent = ref('')
+// editorArea 行为
+const editorAreaRef = ref()
+const focusEditorArea = () => editorAreaRef.value.focus();
+
+// 鼠标光标处理
+const clickSelectEmojiBtn = () => {
+  const isf = isFocus.value
+  focusEditorArea()
+  if(!isf){
+    const selection: Selection = window.getSelection() as Selection;
+    selection.setPosition(selection.baseNode, selection.baseNode.length)
+  }
+}
+
 const isEmojiBtnFocus = ref(false)
-const editorContentRef = ref()
-const currentCursorPosition = ref(0)
 const editorBlur = (e: Event) => {
-  currentCursorPosition.value = getCurrentCursorPosition();
   if(isEmojiBtnFocus.value){
-    editorContentRef.value.focus()
+    focusEditorArea()
     return
   }
-  editorContent.value = (e.target as HTMLInputElement).innerHTML;
   isFocus.value = false;
+}
+const insetEmoji = (emoji: string) => {
+  const span: HTMLSpanElement = document.createElement('span');
+  span.textContent = emoji;
+  let range = rangeOfEditorArea.value
+  if(!range) {
+    range = new Range()
+    range.selectNodeContents(editorAreaRef.value)
+  }
+  if(range.collapsed) {
+    range.insertNode(span)
+  } else {
+    range.deleteContents()
+    range.insertNode(span)
+  }
+  range.collapse(false)
+  // isEmojiBtnFocus.value = true
+  // // nextTick(() => {
+  //   const selection: Selection = window.getSelection() as Selection;
+  //   const range: Range = selection.getRangeAt(0);
+  //   range.deleteContents()
+  //   range.insertNode(span);
+  //   range.setStartAfter(span);
+  //   range.setEndAfter(span);
+  //   selection.removeAllRanges();
+  //   selection.addRange(range);
+  // })
 }
 
 // 显示字符数
@@ -79,17 +120,19 @@ const wordLimit = computed(() => {
   return `${wordLen.value}/${props.maxlength}`
 })
 
+onMounted(() => {
+  document.onselectionchange = () => {
+    let selection: Selection = document.getSelection() as Selection;
 
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
 
-const selectEmoji = (emoji: string) => {
-  const index = currentCursorPosition.value
-  editorContent.value = editorContent.value.slice(0, index) + emoji + editorContent.value.slice(index);
-}
-
-const clickD = () => {
-  console.log('click表情');
-  editorContentRef.value.focus();
-}
+      if (editorAreaRef.value.contains(range.commonAncestorContainer)) {
+        rangeOfEditorArea.value = range;
+      }
+    }
+  }
+})
 
 // 发送按钮状态
 const publishSpeak = async () => {

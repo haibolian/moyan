@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useProp } from '@/hooks/use-prop'
 
 export const propsInstance = {
@@ -15,3 +15,4 @@ export const propsInstance = {
     default: '分享你的想法'
   },
 }
+
