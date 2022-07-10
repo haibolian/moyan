@@ -1,0 +1,13 @@
+.emoji-picker-popover {
+  height: 450px;
+  overflow: auto;
+  .el-tabs__nav.is-top {
+    // width: 100%;
+    // display: flex;
+    // justify-content: space-between;
+  }
+  .el-tabs__item.is-top {
+    padding: 0 15px !important;
+  }
+
+}
