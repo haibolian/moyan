@@ -43,6 +43,10 @@ class MoyanHttp {
   public post(url: string, data: any, config?: object): Promise<any> {
     return this.instance.post(url, data, config)
   }
+
+  public delete(url: string, params?: any, config?: object): Promise<any> {
+    return this.instance.delete(url, { params, ...config })
+  }
 }
 
 const token = storageLocal.getItem('token')
