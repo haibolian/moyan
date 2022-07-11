@@ -8,7 +8,4 @@ const Api = {
 
 export const publish = (data: any) => http.post(Api.publish, data);
 export const getList = (params?: any) => http.get(Api.getList, params);
-
-// export const del = (data: any) => http.post(Api.del, );
-
-
+export const del = (params?: any) => http.delete(Api.del, params);
