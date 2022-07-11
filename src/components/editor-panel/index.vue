@@ -22,7 +22,7 @@
         contenteditable="true"
         spellcheck="false"
       />
-      <p @click="() => {}" class="text-right text-xs colorvar-my-c-normal font-bold">{{ wordLimit }}</p>
+      <p @click="() => {}" :class="`text-right text-xs ${overLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimit }}</p>
       
     </div>
     <!-- assist -->
@@ -40,7 +40,7 @@
           图片
         </el-link>
       </div>
-      <el-button :disabled="!wordLen" type="primary" @click="publish">
+      <el-button :disabled="!wordLen || overLimit" type="primary" @click="publish">
         <IconifyOnline icon="uim:telegram-alt" color="#fff" />
       </el-button>
     </div>
@@ -54,7 +54,6 @@ import EmojiPicker from '@/components/emoji-picker/index.vue';
 
 const props = defineProps(propsInstance)
 const emits = defineEmits(['publish'])
-const editorContent = ref()
 
 // focus样式切换
 const isFocus = ref(false);
@@ -80,9 +79,10 @@ const clickSelectEmojiBtn = () => {
   }
 }
 
+const editorContent = ref()
 const isEmojiBtnFocus = ref(false)
 const editorBlur = (e: Event) => {
-  editorContent.value = (e.target as HTMLDivElement).textContent
+  editorContent.value = (e.target as HTMLDivElement).innerText
   if(isEmojiBtnFocus.value){
     focusEditorArea()
     return
@@ -108,10 +108,12 @@ const insetEmoji = (emoji: string) => {
 
 // 显示字符数
 const wordLen: Ref<number> = ref(0)
+const overLimit = ref(false)
 const editorInput = (e: Event) => {
   wordLen.value = (e.target).textContent.length
 }
 const wordLimit = computed(() => {
+  overLimit.value = wordLen.value > props.maxlength;
   return `${wordLen.value}/${props.maxlength}`
 })
 
@@ -129,9 +131,15 @@ onMounted(() => {
   }
 })
 
+const clearEditor = () => {
+  editorAreaRef.value.innerText = ''
+  editorContent.value = ''
+  wordLen.value = 0
+}
+
 // 发送按钮状态
 const publish = () => {
-  emits('publish', editorContent.value)
+  emits('publish', editorContent.value, clearEditor)
 }
 </script>
 
