@@ -1,17 +1,15 @@
 <template>
-  <article class="p-15px bg-white rounded-2xl">
+  <article class="p-15px bg-white rounded-2xl mt-20px">
     <header class="flex justify-between">
       <el-avatar :size="40" src="https://i9.taou.com/maimai/p/26144/2472_33_4mHTtMrzppqUJcNb-a160" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
-        <h4 role="speaker-name" class="colorvar-my-c-deep">凌凡</h4>
-        <span role="speak-time" class="colorvar-my-c-normal">2022年6月28日  11:22</span>
+        <h4 role="speaker-name" class="colorvar-my-c-deep">{{ speaker?.nickname }}</h4>
+        <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
       </div>
       <span role="tool" class="w-40px text-center">...</span>
     </header>
     <div role="speech-content" class="my-10px mx-2px text-16px leading-relaxed">
-      <p>凌凡，你好！</p>
-      <p> 欢迎来到这里 </p>
-      <p> 尽情发言吧！ </p>
+      <p v-html="content"></p>
     </div>
     <footer>
       <el-divider class="mt-15px mb-10px" />
@@ -22,11 +20,16 @@
       </div>
     </footer>
   </article>
-  <CommentPanel :data="commentList"/>
+  <!-- <CommentPanel :data="commentList"/> -->
 </template>
 
 <script setup lang='ts'>
 import CommentPanel from '@/components/comment-panel/index.vue'
+const props = defineProps({
+  content: String,
+  time: String,
+  speaker: Object
+})
 const commentList = reactive([{
   id: 1,
   name: '凌凡',

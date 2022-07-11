@@ -21,11 +21,11 @@ const speakList = ref<Array<any>>([])
 const getSpeakList = async () => {
   const { success, message, data } = await getList();
   if(!success) return errorMessage(message);
-  speakList.value = speakList.value.push(...data.list)
+  speakList.value.push(...data.list)
 }
 
 onMounted(() => {
-  // getSpeakList()
+  getSpeakList()
 })
 
 

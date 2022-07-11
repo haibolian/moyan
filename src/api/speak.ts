@@ -2,7 +2,7 @@ import http from '@/utils/http'
 
 const Api = {
   publish: '/speak/publish',
-  getList: '/speak/getList',
+  getList: '/speak/getAll',
   del: '/speak/del'
 }
 
