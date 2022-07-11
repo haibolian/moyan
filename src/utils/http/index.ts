@@ -3,6 +3,7 @@ import { MoyanRequestConfig } from './type.d'
 import NProgress from 'nprogress';
 import { ElLoading, ElLoadingService } from "element-plus"
 import 'element-plus/es/components/loading/style/index';
+import { storageLocal } from '../storage';
 
 class MoyanHttp {
   public instance: AxiosInstance
@@ -44,11 +45,12 @@ class MoyanHttp {
   }
 }
 
+const token = storageLocal.getItem('token')
 const httpConfig: AxiosRequestConfig = {
   baseURL: '/api',
   timeout: 5000,
   headers: {
-    Authorization: 'bearer ' + 'token'
+    Authorization: 'Bearer ' + token
   }
 }
 
