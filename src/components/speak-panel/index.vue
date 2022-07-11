@@ -39,8 +39,7 @@
 <script setup lang='ts'>
 import CommentPanel from '@/components/comment-panel/index.vue'
 import { del } from '@/api/speak'
-import { ElMessageBox } from 'element-plus';
-import 'element-plus/es/components/message-box/style/css';
+import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
 const props = defineProps({
   id: [String, Number],
@@ -54,26 +53,15 @@ const emits = defineEmits(['before-delete', 'after-delete'])
 const isMouseEnterPanel = ref(false)
 
 const deleteSpeak = () => {
-  ElMessageBox.confirm('确定删除吗?', '提示', {
-    closeOnClickModal: false,
-    confirmButtonText: '确定',
-    showClose: false,
-    cancelButtonText: '取消',
-    type: 'warning',
-    autofocus: false
-  }).then(() => {
-    handleDeleteSpeak()
-  }).catch(() => {})
+  MessageConfirm('提示', '确定删除吗?', async () => {
+    const id = props.id
+    emits('before-delete', id)
+    const { success, message, data } = await del({ id });
+    if(!success) return errorMessage(message);
+    successMessage(message);
+    emits('after-delete', id)
+  })
 }
-const handleDeleteSpeak = async () => {
-  const id = props.id
-  emits('before-delete', id)
-  const { success, message, data } = await del({ id });
-  if(!success) return errorMessage(message);
-  successMessage(message);
-  emits('after-delete', id)
-}
-
 
 const commentList = reactive([{
   id: 1,
