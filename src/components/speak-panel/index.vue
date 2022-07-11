@@ -1,15 +1,28 @@
 <template>
-  <article class="p-15px bg-white rounded-2xl mt-20px">
+  <article class="p-15px bg-white rounded-2xl mt-20px" @mouseenter="isMouseEnterPanel = true" @mouseleave="isMouseEnterPanel = false">
     <header class="flex justify-between">
       <el-avatar :size="40" src="https://i9.taou.com/maimai/p/26144/2472_33_4mHTtMrzppqUJcNb-a160" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
-        <h4 role="speaker-name" class="colorvar-my-c-deep">{{ speaker?.nickname }}</h4>
+        <h4 role="speaker-name" class="colorvar-my-c-deep">{{ 'speaker?.nickname' }}</h4>
         <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
       </div>
-      <span role="tool" class="w-40px text-center">...</span>
+      <!-- <span role="tool" class="w-40px text-center">...</span> -->
+      <el-dropdown placement="bottom-end" :hide-on-click="false">
+        <div class="h-fit">
+          <IconifyOnline class="" icon="system-uicons:menu-vertical" />
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="deleteSpeak">
+              <IconifyOnline class="mr-6px" font-size="20px" icon="fa6-solid:trash-can" />删除
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </header>
     <div role="speech-content" class="my-10px mx-2px text-16px leading-relaxed">
-      <p v-html="content"></p>
+      <!-- whitespace-pre-wrap 用来支持 \n 换行, 不加这个是不会换行的 -->
+      <p class="whitespace-pre-wrap" v-html="content"></p>
     </div>
     <footer>
       <el-divider class="mt-15px mb-10px" />
@@ -25,11 +38,43 @@
 
 <script setup lang='ts'>
 import CommentPanel from '@/components/comment-panel/index.vue'
+import { del } from '@/api/speak'
+import { ElMessageBox } from 'element-plus';
+import 'element-plus/es/components/message-box/style/css';
+import { errorMessage, successMessage } from '@/utils/message';
 const props = defineProps({
+  id: [String, Number],
+  index: Number,
   content: String,
   time: String,
   speaker: Object
 })
+const emits = defineEmits(['before-delete', 'after-delete'])
+
+const isMouseEnterPanel = ref(false)
+
+const deleteSpeak = () => {
+  ElMessageBox.confirm('确定删除吗?', '提示', {
+    closeOnClickModal: false,
+    confirmButtonText: '确定',
+    showClose: false,
+    cancelButtonText: '取消',
+    type: 'warning',
+    autofocus: false
+  }).then(() => {
+    handleDeleteSpeak()
+  }).catch(() => {})
+}
+const handleDeleteSpeak = async () => {
+  const id = props.id
+  emits('before-delete', id)
+  const { success, message, data } = await del({ id });
+  if(!success) return errorMessage(message);
+  successMessage(message);
+  emits('after-delete', id)
+}
+
+
 const commentList = reactive([{
   id: 1,
   name: '凌凡',
