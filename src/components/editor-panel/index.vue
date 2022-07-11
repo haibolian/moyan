@@ -1,3 +1,6 @@
+<!-- 表情参考文章
+  https://segmentfault.com/a/1190000039359624 
+-->
 <template>
   <div class="editor-panel p-20px bgcvar-my-bgc-deep rounded-2xl mb-20px">
     <div 
@@ -37,7 +40,7 @@
           图片
         </el-link>
       </div>
-      <el-button :disabled="!wordLen" type="primary" @click="publishSpeak">
+      <el-button :disabled="!wordLen" type="primary" @click="publish">
         <IconifyOnline icon="uim:telegram-alt" color="#fff" />
       </el-button>
     </div>
@@ -47,13 +50,11 @@
 <script setup lang='ts'>
 import { Ref } from 'vue';
 import { propsInstance } from './editor-panel';
-import { getCurrentCursorPosition } from '@/utils/cursor'
-import { publish } from '@/api/speak';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
-import { off } from 'process';
 
 const props = defineProps(propsInstance)
-const editorContent = ref('')
+const emits = defineEmits(['publish'])
+const editorContent = ref()
 
 // focus样式切换
 const isFocus = ref(false);
@@ -71,12 +72,17 @@ const clickSelectEmojiBtn = () => {
   focusEditorArea()
   if(!isf){
     const selection: Selection = window.getSelection() as Selection;
-    selection.setPosition(selection.baseNode, selection.baseNode.length)
+    const range = new Range()
+    range.selectNodeContents(editorAreaRef.value)
+    range
+    selection.addRange(range)
+    // debugger
   }
 }
 
 const isEmojiBtnFocus = ref(false)
 const editorBlur = (e: Event) => {
+  editorContent.value = (e.target as HTMLDivElement).textContent
   if(isEmojiBtnFocus.value){
     focusEditorArea()
     return
@@ -98,17 +104,6 @@ const insetEmoji = (emoji: string) => {
     range.insertNode(span)
   }
   range.collapse(false)
-  // isEmojiBtnFocus.value = true
-  // // nextTick(() => {
-  //   const selection: Selection = window.getSelection() as Selection;
-  //   const range: Range = selection.getRangeAt(0);
-  //   range.deleteContents()
-  //   range.insertNode(span);
-  //   range.setStartAfter(span);
-  //   range.setEndAfter(span);
-  //   selection.removeAllRanges();
-  //   selection.addRange(range);
-  // })
 }
 
 // 显示字符数
@@ -135,13 +130,8 @@ onMounted(() => {
 })
 
 // 发送按钮状态
-const publishSpeak = async () => {
-  const data = {
-    id: 1,
-    nickname: "lingfun",
-    content: editorContent.value
-  }
-  const result = await publish(data)
+const publish = () => {
+  emits('publish', editorContent.value)
 }
 </script>
 
