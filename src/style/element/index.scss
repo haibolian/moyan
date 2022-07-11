@@ -32,6 +32,14 @@
   --el-menu-item-height: 45px
 }
 
+:root {
+  --el-border-radius-base: 5px;
+}
+
 .el-checkbox__inner {
   transition: none;
+}
+
+.el-message-box {
+  --el-messagebox-border-radius: 12px;
 }
