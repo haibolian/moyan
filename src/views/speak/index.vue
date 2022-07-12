@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-infinite-scroll="handleScroll" :infinite-scroll-immediate="false">
     <EditorPanel @publish="publishSpeak"></EditorPanel>
     <SpeakPanel
       v-for="(speak, index) in speakList"
@@ -17,15 +17,23 @@
 <script setup lang='ts'>
 import { publish, getList } from '@/api/speak'
 import { errorMessage, successMessage } from '@/utils/message';
-
 const SpeakPanel = defineAsyncComponent(() => import('@/components/speak-panel/index.vue'));
 const EditorPanel = defineAsyncComponent(() => import('@/components/editor-panel/index.vue'));
 
 const speakList = ref<Array<any>>([])
+
+const pageParams = reactive({
+  pageNum: 1,
+  pageSize: 10
+})
 const getSpeakList = async () => {
-  const { success, message, data } = await getList();
+  const { success, message, data } = await getList(pageParams);
   if(!success) return errorMessage(message);
   speakList.value.push(...data.list)
+}
+
+const handleScroll = (e) => {
+debugger
 }
 
 onMounted(() => {
