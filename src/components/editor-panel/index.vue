@@ -124,7 +124,7 @@ onMounted(() => {
     if (selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
 
-      if (editorAreaRef.value.contains(range.commonAncestorContainer)) {
+      if (editorAreaRef.value?.contains(range.commonAncestorContainer)) {
         rangeOfEditorArea.value = range;
       }
     }
