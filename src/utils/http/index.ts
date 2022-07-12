@@ -1,4 +1,4 @@
-import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios'
 import { MoyanRequestConfig } from './type.d'
 import NProgress from 'nprogress';
 import { ElLoading, ElLoadingService } from "element-plus"
@@ -22,7 +22,8 @@ class MoyanHttp {
       this.loading = ElLoading.service({
         fullscreen: true,
       })
-      NProgress.start()
+      NProgress.start();
+      (config.headers as AxiosRequestHeaders).Authorization = 'Bearer ' + storageLocal.getItem('token');
       return config
     })
   }
@@ -49,13 +50,9 @@ class MoyanHttp {
   }
 }
 
-const token = storageLocal.getItem('token')
 const httpConfig: AxiosRequestConfig = {
   baseURL: '/api',
   timeout: 5000,
-  headers: {
-    Authorization: 'Bearer ' + token
-  }
 }
 
 const http = new MoyanHttp(httpConfig)
