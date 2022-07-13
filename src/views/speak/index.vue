@@ -32,8 +32,9 @@ const getSpeakList = async () => {
   speakList.value.push(...data.list)
 }
 
-const handleScroll = (e) => {
-debugger
+const handleScroll = () => {
+  pageParams.pageNum++;
+  getSpeakList()
 }
 
 onMounted(() => {
