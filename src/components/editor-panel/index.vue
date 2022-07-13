@@ -22,7 +22,7 @@
         contenteditable="true"
         spellcheck="false"
       />
-      <p @click="() => {}" :class="`text-right text-xs ${overLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimit }}</p>
+      <p v-if="showWordLimit" @click="() => {}" :class="`text-right text-xs ${overLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimit }}</p>
       
     </div>
     <!-- assist -->
@@ -33,10 +33,17 @@
           @mousedown-panel="isEmojiBtnFocus = true"
           @mouseup-panel="isEmojiBtnFocus = false"
         >
-          <el-link @mousedown="isEmojiBtnFocus = true" @mouseup="isEmojiBtnFocus = false" @click="clickSelectEmojiBtn">表情</el-link>
+          <el-link 
+            :underline="false"
+            @mousedown="isEmojiBtnFocus = true"
+            @mouseup="isEmojiBtnFocus = false"
+            @click="clickSelectEmojiBtn"
+          >
+            <IconifyOnline class="mr-3px" size="18px" icon="fa-regular:smile"></IconifyOnline>表情
+          </el-link>
         </EmojiPicker>
-        <el-link :underline="false" class="mr-30px">
-          <IconifyOnline icon="flat-color-icons:picture" size="18px" class="mr-2px" />
+        <el-link :underline="false" class="ml-20px">
+          <IconifyOnline icon="material-symbols:imagesmode" size="18px" class="mr-3px" />
           图片
         </el-link>
       </div>
