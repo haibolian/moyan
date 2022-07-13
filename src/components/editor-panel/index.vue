@@ -49,7 +49,7 @@
 
 <script setup lang='ts'>
 import { Ref } from 'vue';
-import { propsInstance } from './editor-panel';
+import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
 
 const props = defineProps(propsInstance)
@@ -60,6 +60,20 @@ const isFocus = ref(false);
 const editorWapperFocusStyle = 'bgcvar-my-bgc-deep border-#3182ff';
 const editorWapperBlurStyle = 'bg-#f2f3f5 border-transparent';
 const rangeOfEditorArea = ref<Range>()
+
+onMounted(() => {
+  document.onselectionchange = () => {
+    let selection: Selection = document.getSelection() as Selection;
+
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+
+      if (editorAreaRef.value?.contains(range.commonAncestorContainer)) {
+        rangeOfEditorArea.value = range;
+      }
+    }
+  }
+})
 
 // editorArea 行为
 const editorAreaRef = ref()
@@ -115,20 +129,6 @@ const editorInput = (e: Event) => {
 const wordLimit = computed(() => {
   overLimit.value = wordLen.value > props.maxlength;
   return `${wordLen.value}/${props.maxlength}`
-})
-
-onMounted(() => {
-  document.onselectionchange = () => {
-    let selection: Selection = document.getSelection() as Selection;
-
-    if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-
-      if (editorAreaRef.value?.contains(range.commonAncestorContainer)) {
-        rangeOfEditorArea.value = range;
-      }
-    }
-  }
 })
 
 const clearEditor = () => {
