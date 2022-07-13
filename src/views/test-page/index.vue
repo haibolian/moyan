@@ -1,11 +1,11 @@
 <template>
   <div>
-    ad 
+    <EditorPanel :show-word-limit="false"></EditorPanel>
   </div>
 </template>
 
 <script setup lang='ts'>
-
+import EditorPanel from '@/components/editor-panel/index.vue'
 </script>
 
 <script lang='ts'>
