@@ -15,3 +15,15 @@ export const useWordLimit = () => {
     wordLimitText
   }
 }
+
+export const useRows = () => {
+  const rows = useProp('rows')
+  const minRows = computed(() => {
+    if(rows.value === 1) return '';
+    if(rows.value as number >= 6) return '120px';
+    return (120 - (6 - rows.value) * 20) + 'px'
+  })
+  return {
+    minRows
+  }
+}

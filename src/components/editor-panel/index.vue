@@ -23,7 +23,8 @@
         @focus="isFocus = true"
         @blur="editorBlur"
         @input="editorInput"
-        class="editor__inner outline-none max-h-120px min-h-40px overflow-auto"
+        :style="{ minHeight: minRows }"
+        :class="['editor__inner', 'outline-none', 'max-h-120px', minRows, 'overflow-auto']"
         contenteditable="true"
         spellcheck="false"
       />
@@ -58,7 +59,8 @@
 <script setup lang='ts'>
 import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
-import { useWordLimit } from './editor-panel'
+import { useWordLimit, useRows } from './editor-panel'
+const { minRows } = useRows()
 
 const props = defineProps(propsInstance)
 const emits = defineEmits(['publish'])
