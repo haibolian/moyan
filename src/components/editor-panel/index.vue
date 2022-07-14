@@ -2,8 +2,12 @@
   https://segmentfault.com/a/1190000039359624 
 -->
 <template>
-  <div class="editor-panel p-20px bgcvar-my-bgc-deep rounded-2xl mb-20px">
-    <div 
+  <div 
+    class="editor-panel p-20px bgcvar-my-bgc-deep rounded-2xl mb-20px" 
+    @mousedown="clickingPanelSelf = true" 
+    @mouseup="clickingPanelSelf = false"
+  >
+    <div
       :class="`
         ${isFocus ? editorWapperFocusStyle : editorWapperBlurStyle}
         border
@@ -22,7 +26,7 @@
         contenteditable="true"
         spellcheck="false"
       />
-      <p v-if="showWordLimit" @click="() => {}" :class="`text-right text-xs ${overLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimit }}</p>
+      <p v-if="showWordLimit" @click="() => {}" :class="`text-right text-xs ${isOverLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimitText }}</p>
       
     </div>
     <!-- assist -->
@@ -30,13 +34,9 @@
       <div class="flex-.7">
         <EmojiPicker
           @select="insetEmoji"
-          @mousedown-panel="isEmojiBtnFocus = true"
-          @mouseup-panel="isEmojiBtnFocus = false"
         >
           <el-link 
             :underline="false"
-            @mousedown="isEmojiBtnFocus = true"
-            @mouseup="isEmojiBtnFocus = false"
             @click="clickSelectEmojiBtn"
           >
             <IconifyOnline class="mr-3px" size="18px" icon="fa-regular:smile"></IconifyOnline>表情
@@ -47,7 +47,7 @@
           图片
         </el-link>
       </div>
-      <el-button :disabled="!wordLen || overLimit" type="primary" @click="publish">
+      <el-button :disabled="!wordLen || isOverLimit" type="primary" @click="publish">
         <IconifyOnline icon="uim:telegram-alt" color="#fff" />
       </el-button>
     </div>
@@ -55,9 +55,9 @@
 </template>
 
 <script setup lang='ts'>
-import { Ref } from 'vue';
 import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
+import { useWordLimit } from './editor-panel'
 
 const props = defineProps(propsInstance)
 const emits = defineEmits(['publish'])
@@ -91,20 +91,25 @@ const clickSelectEmojiBtn = () => {
   const isf = isFocus.value
   focusEditorArea()
   if(!isf){
+    // 光标移动到最后
     const selection: Selection = window.getSelection() as Selection;
-    const range = new Range()
-    range.selectNodeContents(editorAreaRef.value)
-    range
-    selection.addRange(range)
-    // debugger
+    const range = document.createRange()
+    range.selectNodeContents(editorAreaRef.value);
+    range.collapse(false);
+    if(selection.anchorOffset!=0){
+      return;
+    };
+    selection.removeAllRanges();
+    selection.addRange(range);
   }
 }
 
+
 const editorContent = ref()
-const isEmojiBtnFocus = ref(false)
+const clickingPanelSelf = ref(false)
 const editorBlur = (e: Event) => {
   editorContent.value = (e.target as HTMLDivElement).innerText
-  if(isEmojiBtnFocus.value){
+  if(clickingPanelSelf.value){
     focusEditorArea()
     return
   }
@@ -127,16 +132,10 @@ const insetEmoji = (emoji: string) => {
   range.collapse(false)
 }
 
-// 显示字符数
-const wordLen: Ref<number> = ref(0)
-const overLimit = ref(false)
+const { wordLen, isOverLimit, wordLimitText } = useWordLimit();
 const editorInput = (e: Event) => {
   wordLen.value = (e.target).textContent.length
 }
-const wordLimit = computed(() => {
-  overLimit.value = wordLen.value > props.maxlength;
-  return `${wordLen.value}/${props.maxlength}`
-})
 
 const clearEditor = () => {
   editorAreaRef.value.innerText = ''

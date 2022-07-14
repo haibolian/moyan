@@ -4,6 +4,7 @@
     placement="bottom-start"
     popper-class="emoji-picker-popover"
     :width="450"
+    :teleported="false"
     trigger="click"
     :hide-after="1"
   >
