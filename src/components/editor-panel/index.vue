@@ -3,7 +3,7 @@
 -->
 <template>
   <div 
-    class="editor-panel p-20px bgcvar-my-bgc-deep rounded-2xl mb-20px" 
+    class="editor-panel p-20px bgcvar-my-bgc-normal rounded-2xl mb-20px" 
     @mousedown="clickingPanelSelf = true" 
     @mouseup="clickingPanelSelf = false"
   >
@@ -12,6 +12,7 @@
         ${isFocus ? editorWapperFocusStyle : editorWapperBlurStyle}
         border
         border-2px
+        bgcvar-my-bgc-deep
         p-10px
         rounded-lg
       `"
