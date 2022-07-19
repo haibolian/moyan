@@ -1,6 +1,7 @@
 <template>
   <div>
-    <EditorPanel :show-word-limit="false"></EditorPanel>
+    <EditorPanel :rows="1" plain show-avatar avatar-src="https://avatars.githubusercontent.com/u/51857421?v=4" :show-word-limit="false"></EditorPanel>
+    <h1>asdnkajd</h1>
   </div>
 </template>
 
