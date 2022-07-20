@@ -2,7 +2,11 @@
   <div :class="`sidebar-wapper bgcvar-my-bgc-normal rounded-28px backdrop-filter backdrop-blur-xl h-100%`">
     <div :class="`px-28px py-20px relative ${isCollapse && 'px-20px!'}`">
       <HeaderBar></HeaderBar>
-      <PlainUser></PlainUser>
+      <PlainUser
+        :nickname="userStore.userInfo.nickname"
+        :avatar="userStore.userInfo.avatar"
+        :motto="userStore.userInfo.motto"
+      />
       <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30"/>
       <MenuList></MenuList>
       <el-divider class="border-color-#d0d9e2 dark:border-color-#ffffff30 mt-18px"/>
@@ -21,7 +25,9 @@ import PlainSetting from "./components/plain-setting.vue";
 import PlainTodo from "./components/plain-todo.vue";
 import MenuList from "./components/menu-list.vue";
 import { isCollapse } from '@/hooks/useCollapse';
+import { useUserStore } from '@/store/modules/user';
 
+const userStore = useUserStore()
 
 </script>
 
