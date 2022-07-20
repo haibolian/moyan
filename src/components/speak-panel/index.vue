@@ -1,7 +1,7 @@
 <template>
   <article class="p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px" @mouseenter="isMouseEnterPanel = true" @mouseleave="isMouseEnterPanel = false">
     <header class="flex justify-between">
-      <el-avatar :size="40" src="https://i9.taou.com/maimai/p/26144/2472_33_4mHTtMrzppqUJcNb-a160" class="mr-10px"/>
+      <el-avatar :size="40" :src="speaker?.avatar" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
         <h4 role="speaker-name" class="colorvar-my-c-deep">{{ speaker?.nickname }}</h4>
         <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
