@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import { storageLocal } from "@/utils/storage"
+import { getUserInfo } from '@/api/user';
+import { errorMessage } from '@/utils/message'
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -25,6 +27,14 @@ export const useUserStore = defineStore({
     setToken(token: string) {
       this.token = token;
       storageLocal.setItem('token', token)
+    },
+    async getAndSetUser() {
+      const { data, success, message } = await getUserInfo()
+      if(success) {
+        this.setUserInfo(data)
+      }else {
+        errorMessage(message);
+      }
     }
   }
 })

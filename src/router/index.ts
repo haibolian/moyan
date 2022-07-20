@@ -1,4 +1,5 @@
-import { storageLocal, storageSession } from '@/utils/storage'
+import { storageLocal, storageSession } from '@/utils/storage';
+import { useUserStore } from '@/store/modules/user';
 import {
   createRouter,
   createWebHistory,
@@ -12,10 +13,14 @@ const router: Router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const token = storageLocal.getItem('token')
+  const userStore = useUserStore();
 
   if (token) {
+    if (to.path !== '/login' && !userStore.userInfo.username) {
+      await userStore.getAndSetUser()
+    }
     if (to.path === '/login') return next('/')
     next()
   } else {
