@@ -1,9 +1,13 @@
 import router from "@/router"
+import { useUserStore } from '@/store/modules/user';
 import { storageLocal, storageSession } from "@/utils/storage"
+import { UserInfo } from './type'
 
-export function init(data: any) {
-  storageLocal.setItem('token', data.accessToken)
-  storageLocal.setItem('username', data.username)
+const userStore = useUserStore();
+
+export function init(data: UserInfo) {
+  userStore.setUserInfo(data);
+  userStore.setToken(data.accessToken);
   const target = storageSession.getItem('target')
   router.push(target !== '/login' && router.hasRoute(target) ? target : '/')
   storageSession.removeItem('target')

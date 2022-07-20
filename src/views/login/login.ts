@@ -3,6 +3,7 @@ import { FormRules, FormInstance } from 'element-plus'
 import { errorMessage } from '@/utils/message'
 import { login } from '@/api/user'
 import { init } from './helper'
+import { LoginResult } from './type'
 
 const useLoginForm = () => {
   const login_ref: Ref = ref<FormInstance>()
@@ -14,7 +15,7 @@ const useLoginForm = () => {
   const handleLogin = async () => {
     const valid = await login_ref.value.validate()
     if (!valid) return
-    const { data, message, success } = await login({
+    const { data, message, success }: LoginResult = await login({
       username: loginForm.username,
       password: loginForm.password
     })
