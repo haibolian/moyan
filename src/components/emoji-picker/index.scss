@@ -1,13 +1,18 @@
 .emoji-picker-popover {
-  height: 450px;
-  overflow: auto;
-  .el-tabs__nav.is-top {
-    // width: 100%;
-    // display: flex;
-    // justify-content: space-between;
+  --el-popover-border-radius: 10px;
+  --theme-color-emoji-picker: #c5cdd0;
+  --el-bg-color-overlay: var(--theme-color-emoji-picker);
+  --el-border-color-lighter: var(--theme-color-emoji-picker);
+  --el-border-color-light: var(--theme-color-emoji-picker);
+  .el-tabs__header.is-top {
+    margin: 0 0 10px;
   }
   .el-tabs__item.is-top {
     padding: 0 15px !important;
+  }
+  .el-tabs__content {
+    height: 450px;
+    overflow: auto;
   }
 
 }
