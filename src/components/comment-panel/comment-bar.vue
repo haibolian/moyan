@@ -5,11 +5,11 @@
       <Commentator :name="props.name" :time="props.time" :to="props.to"/>
       <CommentContent class="mt-2px mb-4px" :content="props.content"/>
       <CommentTools />
-      <el-link v-if="!to">查看 1 条回复</el-link>
       <!-- <span>{{ reply }}</span> -->
       <template v-if="props.reply">
         <CommentBar v-for="rep in reply" v-bind="rep" /> 
       </template>
+      <el-link v-if="!to">查看更多回复</el-link>
     </div>
   </div>
   <el-divider v-if="!props.to && !$attrs.isEnd" class="my-10px"></el-divider>

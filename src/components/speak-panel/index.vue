@@ -28,12 +28,12 @@
       <el-divider class="mt-15px mb-10px" />
       <div role="speech-tolls" class="flex justify-around">
         <el-link :underline="false" class="">点赞</el-link>
-        <el-link :underline="false" class="" @click="clickComment">评论</el-link>
+        <el-link :underline="false" class="" @click="clickComment(id)">评论{{commentCount}}</el-link>
         <el-link :underline="false" class="">收藏</el-link>
       </div>
     </footer>
   </article>
-  <CommentPanel v-if="showComment" :data="commentList"/>
+  <CommentPanel v-show="showComment" :data="commentList"/>
 </template>
 
 <script setup lang='ts'>
@@ -41,11 +41,12 @@ import CommentPanel from '@/components/comment-panel/index.vue'
 import { del } from '@/api/speak'
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
-import { useComment } from './speak'
+import { useComment } from './comment'
 const props = defineProps({
   id: [String, Number],
   index: Number,
   content: String,
+  commentCount: [ Number, String ],
   time: String,
   speaker: Object
 })
@@ -64,8 +65,7 @@ const deleteSpeak = () => {
   })
 }
 
-const { showComment, clickComment } = useComment()
-const commentList = reactive([])
+const { showComment, clickComment, commentList } = useComment()
 
 // const commentList = reactive([{
 //   id: 1,

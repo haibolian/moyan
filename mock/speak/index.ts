@@ -19,6 +19,7 @@ export default {
             "images": null,
             "from_id": "6",
             "created_at": "2022-07-13 22:17:57",
+            "commentCount": 3,
             "user": {
               "id": 6,
               "nickname": "用户ui34m8y8av4",
@@ -31,6 +32,7 @@ export default {
             "images": null,
             "from_id": "6",
             "created_at": "2022-07-13 22:17:53",
+            "commentCount": 3,
             "user": {
               "id": 6,
               "nickname": "用户ui34m8y8av4",
@@ -43,6 +45,7 @@ export default {
             "images": null,
             "from_id": "6",
             "created_at": "2022-07-13 22:17:50",
+            "commentCount": 3,
             "user": {
               "id": 6,
               "nickname": "用户ui34m8y8av4",

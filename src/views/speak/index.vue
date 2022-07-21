@@ -7,6 +7,7 @@
       :id="speak.id"
       :index="index"
       :content="speak.content"
+      :comment-count="speak.commentCount"
       :time="speak.created_at"
       :speaker="speak.user"
       @after-delete="deleteSpeak"
