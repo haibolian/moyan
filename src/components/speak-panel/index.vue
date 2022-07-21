@@ -27,13 +27,13 @@
     <footer>
       <el-divider class="mt-15px mb-10px" />
       <div role="speech-tolls" class="flex justify-around">
-        <el-link class="">点赞</el-link>
-        <el-link class="">评论</el-link>
-        <el-link class="">转发</el-link>
+        <el-link :underline="false" class="">点赞</el-link>
+        <el-link :underline="false" class="" @click="clickComment">评论</el-link>
+        <el-link :underline="false" class="">收藏</el-link>
       </div>
     </footer>
   </article>
-  <!-- <CommentPanel :data="commentList"/> -->
+  <CommentPanel v-if="showComment" :data="commentList"/>
 </template>
 
 <script setup lang='ts'>
@@ -41,6 +41,7 @@ import CommentPanel from '@/components/comment-panel/index.vue'
 import { del } from '@/api/speak'
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
+import { useComment } from './speak'
 const props = defineProps({
   id: [String, Number],
   index: Number,
@@ -63,57 +64,60 @@ const deleteSpeak = () => {
   })
 }
 
-const commentList = reactive([{
-  id: 1,
-  name: '凌凡',
-  time: '2022年6月28日  11:22',
-  to: null,
-  content: '博主，你好！',
-  reply: [
-    {
-      id: 1,
-      name: '博主',
-      time: '2022年6月28日  11:22',
-      to: '凌凡',
-      content: '凌凡，你好！'
-    },
-    {
-      id: 2,
-      name: '凌凡',
-      time: '2022年6月28日  11:22',
-      to: '博主',
-      content: '你竟然回复我了，好开心'
-    }
-  ]
-},{
-  id: 1,
-  name: '凌凡',
-  time: '2022年6月28日  11:22',
-  to: null,
-  content: '博主，你好！',
-  reply: [
-    {
-      id: 1,
-      name: '博主',
-      time: '2022年6月28日  11:22',
-      to: '凌凡',
-      content: '凌凡，你好！'
-    },
-    {
-      id: 2,
-      name: '凌凡',
-      time: '2022年6月28日  11:22',
-      to: '博主',
-      content: '你竟然回复我了，好开心'
-    }
-  ]
-},{
-  id: 1,
-  name: '凌凡',
-  time: '2022年6月28日  11:22',
-  to: null,
-  content: '博主，你好！'
-}])
+const { showComment, clickComment } = useComment()
+const commentList = reactive([])
+
+// const commentList = reactive([{
+//   id: 1,
+//   name: '凌凡',
+//   time: '2022年6月28日  11:22',
+//   to: null,
+//   content: '博主，你好！',
+//   reply: [
+//     {
+//       id: 1,
+//       name: '博主',
+//       time: '2022年6月28日  11:22',
+//       to: '凌凡',
+//       content: '凌凡，你好！'
+//     },
+//     {
+//       id: 2,
+//       name: '凌凡',
+//       time: '2022年6月28日  11:22',
+//       to: '博主',
+//       content: '你竟然回复我了，好开心'
+//     }
+//   ]
+// },{
+//   id: 1,
+//   name: '凌凡',
+//   time: '2022年6月28日  11:22',
+//   to: null,
+//   content: '博主，你好！',
+//   reply: [
+//     {
+//       id: 1,
+//       name: '博主',
+//       time: '2022年6月28日  11:22',
+//       to: '凌凡',
+//       content: '凌凡，你好！'
+//     },
+//     {
+//       id: 2,
+//       name: '凌凡',
+//       time: '2022年6月28日  11:22',
+//       to: '博主',
+//       content: '你竟然回复我了，好开心'
+//     }
+//   ]
+// },{
+//   id: 1,
+//   name: '凌凡',
+//   time: '2022年6月28日  11:22',
+//   to: null,
+//   content: '博主，你好！'
+// }])
 </script>
 
 <script lang='ts'>

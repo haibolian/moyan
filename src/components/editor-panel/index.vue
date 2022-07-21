@@ -17,7 +17,7 @@
             ${isFocus ? editorWapperFocusStyle : editorWapperBlurStyle}
             border
             border-2px
-            bgcvar-my-bgc-deep
+            bg-#f2f3f5
             p-10px
             rounded-lg
           `"
@@ -40,7 +40,7 @@
         <div v-show="showAssist" class="pt-20px flex justify-between">
           <div class="flex-.7">
             <EmojiPicker
-              @select="insetEmoji"
+              @select="insertEmoji"
             >
               <el-link
                 :underline="false"
@@ -125,10 +125,12 @@ const editorBlur = (e: Event) => {
   }
   isFocus.value = false;
 }
-const insetEmoji = (emoji: string) => {
+const insertEmoji = (emoji: string) => {
   const span: HTMLSpanElement = document.createElement('span');
   span.textContent = emoji;
   let range = rangeOfEditorArea.value
+  console.log('range', range);
+  
   if(!range) {
     range = new Range()
     range.selectNodeContents(editorAreaRef.value)
