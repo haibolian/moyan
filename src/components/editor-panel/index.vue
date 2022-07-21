@@ -78,18 +78,22 @@ const editorWapperFocusStyle = 'bgcvar-my-bgc-deep border-#3182ff';
 const editorWapperBlurStyle = 'bg-#f2f3f5 border-transparent';
 const rangeOfEditorArea = ref<Range>()
 
-onMounted(() => {
-  document.onselectionchange = () => {
-    let selection: Selection = document.getSelection() as Selection;
+const selectionChangeEvent = () => {
+  let selection: Selection = document.getSelection() as Selection;
 
-    if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
+  if (selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
 
-      if (editorAreaRef.value?.contains(range.commonAncestorContainer)) {
-        rangeOfEditorArea.value = range;
-      }
+    if (editorAreaRef.value?.contains(range.commonAncestorContainer)) {
+      rangeOfEditorArea.value = range;
     }
   }
+}
+onMounted(() => {
+  document.addEventListener('selectionchange', selectionChangeEvent);
+})
+onUnmounted(() => {
+  document.removeEventListener('selectionchange', selectionChangeEvent);
 })
 
 // editorArea 行为
