@@ -1,7 +1,7 @@
 <template>
   <article class="p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px" @mouseenter="isMouseEnterPanel = true" @mouseleave="isMouseEnterPanel = false">
     <header class="flex justify-between">
-      <el-avatar :size="40" :src="speaker?.avatar" class="mr-10px"/>
+      <el-avatar :size="40" :src="'http://localhost:3000' + speaker?.avatar" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
         <h4 role="speaker-name" class="colorvar-my-c-deep">{{ speaker?.nickname }}</h4>
         <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
@@ -28,20 +28,22 @@
       <el-divider class="mt-15px mb-10px" />
       <div role="speech-tolls" class="flex justify-around">
         <el-link :underline="false" class="">点赞</el-link>
-        <el-link :underline="false" class="" @click="clickComment(id)">评论{{commentCount}}</el-link>
+        <el-link :underline="false" class="" @click="clickComment(id)">评论{{commentCount || ''}}</el-link>
         <el-link :underline="false" class="">收藏</el-link>
       </div>
     </footer>
   </article>
-  <CommentPanel v-show="showComment" :data="commentList"/>
+  <CommentPanel v-show="showComment" ownerType="spaek" :ownerId="id" :data="commentList" @publish-comment="publishComment"/>
 </template>
 
 <script setup lang='ts'>
 import CommentPanel from '@/components/comment-panel/index.vue'
-import { del } from '@/api/speak'
+import { del, publish } from '@/api/speak'
+import { publish as publishComment } from '@/api/comment'
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
-import { useComment } from './comment'
+import { useComment } from './comment';
+
 const props = defineProps({
   id: [String, Number],
   index: Number,
@@ -65,8 +67,11 @@ const deleteSpeak = () => {
   })
 }
 
-const { showComment, clickComment, commentList } = useComment()
+const { showComment, clickComment, commentList, afterPublishComment } = useComment(props)
 
+provide('commentApi', {
+  publish: publishComment
+})
 // const commentList = reactive([{
 //   id: 1,
 //   name: '凌凡',

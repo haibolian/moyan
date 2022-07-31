@@ -3,7 +3,7 @@ import http from '@/utils/http'
 const Api = {
   login: '/users/login',
   registry: '/users/register',
-  getUserInfo: '/users/getUserInfo',
+  getUserInfo: '/users/getUser',
 }
 
 export const login = (data: any) => http.post(Api.login, data)

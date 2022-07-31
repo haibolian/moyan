@@ -1,5 +1,3 @@
-
-
 export const Commentator = (props: any) => {
   return (
     <p>
@@ -19,11 +17,3 @@ export const CommentContent = (props: any) => {
   )
 }
 
-export const CommentTools = (props: any) => {
-  return (
-    <div>
-      <span class={'mr-10px'}>赞</span>
-      <span>回复</span>
-    </div>
-  )
-}

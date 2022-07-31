@@ -35,10 +35,10 @@ export default defineConfig({
       })]
     }),
     Unocss(),
-    viteMockServe({
-      mockPath: './mock',
-      logger: false
-    })
+    // viteMockServe({
+    //   mockPath: './mock',
+    //   logger: false
+    // })
   ],
   server: {
     port: 8000,

@@ -9,7 +9,7 @@
   >
     <div class="editor-wapper flex">
       <div v-if="showAvatar" class="editor-avatar w-58px">
-        <el-avatar class="" :src="avatarSrc" />
+        <el-avatar class="" :src="avatarSrc || userInfo.avatar" />
       </div>
       <div class="editor-main flex-1">
         <div
@@ -67,7 +67,9 @@
 import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
 import { useWordLimit, useRows } from './editor-panel'
+import { useUserStore } from '@/store/modules/user'
 const { minRows } = useRows()
+const { userInfo } = useUserStore()
 
 const props = defineProps(propsInstance)
 const emits = defineEmits(['publish'])
@@ -167,6 +169,12 @@ const clearEditor = () => {
 // 发送按钮状态
 const publish = () => {
   emits('publish', editorContent.value, clearEditor)
+}
+
+const focus = () => {
+  console.log('cao');
+  
+  editorAreaRef.value.focus()
 }
 </script>
 

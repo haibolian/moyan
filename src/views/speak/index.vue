@@ -42,7 +42,6 @@ onMounted(() => {
   getSpeakList()
 })
 
-
 const publishSpeak = async (content: string, clearEditor: () => void) => {
   if(!content) return errorMessage('请输入内容');
   const { success, message, data } = await publish({ content });

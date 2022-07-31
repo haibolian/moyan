@@ -8,6 +8,7 @@ export const useUserStore = defineStore({
   // 在 Pinia 中，状态被定义为返回初始状态的函数。
   state: () => ({
     userInfo: {
+      id: null,
       username: '',
       nickname: '',
       avatar: '',
