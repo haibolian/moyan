@@ -7,7 +7,7 @@
           v-for="task in tasks" 
           :class="`h-40px flex ${isCollapse ? 'justify-center' : 'justify-between'} items-center`"
         >
-          <div class="bg-#eee rounded-50% p-5px">
+          <div class="bg-#eee rounded-50% h-28px w-28px grid place-content-center">
             <IconifyOnline size='18px' :icon="task.icon" />
           </div>
           <h4 v-show="!isCollapse" class="test-overflow-ellipsis flex-auto mx-8px inline colorvar-my-c-deep">{{ task.content }}</h4>
