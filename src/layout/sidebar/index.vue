@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
+.el-divider--horizontal {
+  margin: 12px 0;
+}
 </style>

@@ -9,21 +9,34 @@
 import CommentBar from './comment-bar.vue';
 import EditorPanel from '@/components/editor-panel/index.vue';
 import { useUserStore } from '@/store/modules/user'
+import { errorMessage, successMessage } from '@/utils/message';
 const props = defineProps({
-  data: Array
+  data: Array,
+  originId: [String, Number],
+  originType: String,
 })
 const emits = defineEmits(['publish-comment', 'publish-reply'])
 
-const userInfo = useUserStore()
+const { userInfo } = useUserStore()
 const commentApi = inject('commentApi');
 
 const publishComment = async (content: string, clearEditor: () => void) => {
   emits('publish-comment', content);
-  const data = {
+  const payload = {
     content,
-    
+    originId: props.originId,
+    originType: props.originType,
+    fromId: userInfo.id
   }
-  const result = await commentApi.publish()
+  const { success, message, data } = await commentApi.publish(payload)
+  if(!success) return errorMessage(message);
+  successMessage(message);
+  data.from = {
+    id: userInfo.id,
+    avatar: userInfo.avatar,
+    nickname: userInfo.nickname
+  };
+  props.data?.unshift(data);
   clearEditor()
 }
 

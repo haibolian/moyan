@@ -33,7 +33,7 @@
       </div>
     </footer>
   </article>
-  <CommentPanel v-show="showComment" ownerType="spaek" :ownerId="id" :data="commentList" @publish-comment="publishComment"/>
+  <CommentPanel v-show="showComment" originType="spaek" :originId="id" :data="commentList"/>
 </template>
 
 <script setup lang='ts'>
