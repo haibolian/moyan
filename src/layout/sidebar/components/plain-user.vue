@@ -3,7 +3,7 @@
     <div>
       <!-- avatar-shadow dark:avatar-dark-shadow -->
       <el-avatar class="" size="large"
-        :src="props.avatar">
+        :src="getImg(props.avatar)">
         <!-- https://avatars.githubusercontent.com/u/51857421?v=4 -->
       </el-avatar>
     </div>
@@ -16,6 +16,8 @@
 
 <script setup lang='ts'>
 import { isCollapse } from '@/hooks/useCollapse';
+import { getImg } from "@/utils/splicing-domain";
+
 const props = defineProps({
   avatar: String,
   nickname: String,

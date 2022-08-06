@@ -1,6 +1,6 @@
 <template>
   <div :class="`comment-bar flex ${props.to && 'mt-10px'}`">
-    <el-avatar :size="40" class="mr-10px" src="https://i9.taou.com/maimai/p/26144/2472_33_4mHTtMrzppqUJcNb-a160" />
+    <el-avatar :size="40" class="mr-10px" :src="getImg(from?.avatar)" />
     <div class="flex-1">
       <Commentator :name="from?.nickname" :time="createdAt" :to="to?.nickname"/>
       <CommentContent class="mt-2px mb-4px" :content="content"/>
@@ -32,6 +32,8 @@
 <script setup lang='tsx'>
 import { Commentator, CommentContent } from './widget'
 import EditorPanel from '../editor-panel/index.vue';
+import { getImg } from '@/utils/splicing-domain';
+
 const props = defineProps({
   id: Number,
   content: String,

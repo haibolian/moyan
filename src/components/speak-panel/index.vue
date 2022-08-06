@@ -1,7 +1,7 @@
 <template>
   <article class="p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px" @mouseenter="isMouseEnterPanel = true" @mouseleave="isMouseEnterPanel = false">
     <header class="flex justify-between">
-      <el-avatar :size="40" :src="'http://localhost:3000' + speaker?.avatar" class="mr-10px"/>
+      <el-avatar :size="40" :src="getImg(speaker?.avatar)" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
         <h4 role="speaker-name" class="colorvar-my-c-deep">{{ speaker?.nickname }}</h4>
         <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
@@ -43,6 +43,7 @@ import { publish as publishComment } from '@/api/comment'
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
 import { useComment } from './comment';
+import { getImg } from '@/utils/splicing-domain';
 
 const props = defineProps({
   id: [String, Number],
