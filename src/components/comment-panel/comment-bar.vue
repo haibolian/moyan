@@ -1,8 +1,8 @@
 <template>
-  <div :class="`comment-bar flex ${props.to && 'mt-10px'}`">
+  <div :class="`comment-bar flex ${props.to && 'mt-10px'}`" v-bind="$attrs">
     <el-avatar :size="40" class="mr-10px" :src="getImg(from?.avatar)" />
     <div class="flex-1">
-      <Commentator :name="from?.nickname" :time="createdAt" :to="to?.nickname"/>
+      <Commentator :name="from?.nickname" :time="createdAt" :to="replyType != '0' && to?.nickname"/>
       <CommentContent class="mt-2px mb-4px" :content="content"/>
       <div>
         <el-link :underline= "false"  class='mr-10px'>
@@ -20,10 +20,8 @@
         :rows="1" 
         @publish="publishReply">
       </EditorPanel>
-      <template>
-        <CommentBar v-for="rep in replies" v-bind="rep" /> 
-      </template>
-      <el-link v-if="repliesCount">查看更多回复</el-link>
+      <CommentBar v-for="rep in replies" v-bind="rep" /> 
+      <el-link v-if="repliesCount" @click="loadReplies">查看更多回复</el-link>
     </div>
   </div>
   <el-divider v-if="!props.to && !$attrs.isEnd" class="my-10px"></el-divider>
@@ -32,19 +30,23 @@
 <script setup lang='tsx'>
 import { Commentator, CommentContent } from './widget'
 import EditorPanel from '../editor-panel/index.vue';
+import { useUserStore } from '@/store/modules/user'
 import { getImg } from '@/utils/splicing-domain';
+import { errorMessage, successMessage } from '@/utils/message';
 
 const props = defineProps({
-  id: Number,
+  id: Number, // comment id
   content: String,
-  originId: String || Number,
+  originId: String || Number, // 说说 Id
   originType: String,
   repliesCount: Number,
-  fromId: String || Number,
+  fromId: [String, Number],
   toId: String || Number,
   createdAt: String,
   from: Object,
-  to: Object
+  to: Object,
+  // 回复所需的 props
+  replyType: [String, Number]
 })
 provide('message','Hello World!')
 
@@ -57,9 +59,27 @@ const clickReplyBtn = () => {
   showEditor.value = !showEditor.value
 }
 
+const Api = inject('Api')
+const { userInfo } = useUserStore()
 
+const publishReply = async (content: string) => {
+  const body = {
+    content,
+    commentId: props.id,
+    replyType: 0,
+    replyId: props.originId,
+    fromId: userInfo.id,
+    toId: props.fromId
+  }
+  const { data, success, message } = await Api.publishReply(body)
+  if(!success) return errorMessage(message);
+  successMessage(message);
+  replies.value.unshift(data)
+}
 
-const publishReply = () => {
+const loadReplies = async () => {
+  const { data, success, message } = await Api.getReplies({commentId: props.id})
+  replies.value = data.list
   
 }
   

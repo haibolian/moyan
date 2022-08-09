@@ -18,7 +18,7 @@ const props = defineProps({
 const emits = defineEmits(['publish-comment', 'publish-reply'])
 
 const { userInfo } = useUserStore()
-const commentApi = inject('commentApi');
+const Api = inject('Api');
 
 const publishComment = async (content: string, clearEditor: () => void) => {
   emits('publish-comment', content);
@@ -28,7 +28,7 @@ const publishComment = async (content: string, clearEditor: () => void) => {
     originType: props.originType,
     fromId: userInfo.id
   }
-  const { success, message, data } = await commentApi.publish(payload)
+  const { success, message, data } = await Api.publishComment(payload)
   if(!success) return errorMessage(message);
   successMessage(message);
   data.from = {

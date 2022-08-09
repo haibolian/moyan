@@ -39,7 +39,8 @@
 <script setup lang='ts'>
 import CommentPanel from '@/components/comment-panel/index.vue'
 import { del, publish } from '@/api/speak'
-import { publish as publishComment } from '@/api/comment'
+import { publish as publishComment, del as delComment } from '@/api/comment'
+import { publish as publishReply, del as delReply, getList as getReplies } from '@/api/reply'
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
 import { useComment } from './comment';
@@ -70,9 +71,14 @@ const deleteSpeak = () => {
 
 const { showComment, clickComment, commentList, afterPublishComment } = useComment(props)
 
-provide('commentApi', {
-  publish: publishComment
+provide('Api', {
+  publishComment,
+  delComment,
+  publishReply,
+  delReply,
+  getReplies
 })
+
 // const commentList = reactive([{
 //   id: 1,
 //   name: '凌凡',
