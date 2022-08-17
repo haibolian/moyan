@@ -31,12 +31,19 @@ class MoyanHttp {
     this.instance.interceptors.response.use((response: AxiosResponse) => {
       NProgress.done()
       this.loading.close()
+      if(response.data.code === "10101") this.handleTokenError()
       return response.data
     }, (error: AxiosError) => {
       NProgress.done()
       return Promise.reject(error)
     })
   }
+
+  private handleTokenError() {
+    storageLocal.clear()
+    window.location.href = '/login'
+  }
+
   public get(url: string, params?: any, config?: object): Promise<any> {
     return this.instance.get(url, { params, ...config })
   }
