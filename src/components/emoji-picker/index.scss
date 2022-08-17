@@ -1,6 +1,6 @@
 .emoji-picker-popover {
   --el-popover-border-radius: 10px;
-  --theme-color-emoji-picker: #d2d8da;
+  --theme-color-emoji-picker: var(--my-bgc-normal);
   --el-bg-color-overlay: var(--theme-color-emoji-picker);
   --el-border-color-lighter: var(--theme-color-emoji-picker);
   --el-border-color-light: var(--theme-color-emoji-picker);
@@ -14,5 +14,4 @@
     height: 450px;
     overflow: auto;
   }
-
 }
