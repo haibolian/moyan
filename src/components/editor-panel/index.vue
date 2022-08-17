@@ -79,7 +79,7 @@ const emits = defineEmits(['publish'])
 // focus样式切换
 const isFocus = ref(false);
 const editorWapperFocusStyle = 'bgcvar-my-bgc-deep border-#3182ff';
-const editorWapperBlurStyle = 'bg-#f2f3f5 border-transparent';
+const editorWapperBlurStyle = 'bgcvar-my-bgc-deep border-transparent';
 const rangeOfEditorArea = ref<Range>()
 
 const selectionChangeEvent = () => {
