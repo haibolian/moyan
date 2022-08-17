@@ -24,14 +24,14 @@
       <!-- whitespace-pre-wrap 用来支持 \n 换行, 不加这个是不会换行的 -->
       <p class="whitespace-pre-wrap" v-html="content"></p>
     </div>
-    <footer>
+    <!-- <footer>
       <el-divider class="mt-15px mb-10px" />
       <div role="speech-tolls" class="flex justify-around">
         <el-link :underline="false" class="">点赞</el-link>
         <el-link :underline="false" class="" @click="clickComment(id)">评论{{commentCount || ''}}</el-link>
         <el-link :underline="false" class="">收藏</el-link>
       </div>
-    </footer>
+    </footer> -->
   </article>
   <CommentPanel v-show="showComment" originType="spaek" :originId="id" :data="commentList"/>
 </template>
