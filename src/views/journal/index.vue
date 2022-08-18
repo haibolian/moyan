@@ -1,13 +1,19 @@
 
 <template>
-  <div class="home">journal</div>
+  <div class="journal">
+    <div class="journal-content">
+      
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <script lang="ts">
 export default {
-  name: "Home",
+  name: "Journal",
 }
 </script>
 

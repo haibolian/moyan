@@ -18,6 +18,8 @@
   "homepage": "https://github.com/haibolian/moyan#readme",
   "dependencies": {
     "@vueuse/core": "^8.7.5",
+    "@wangeditor/editor": "^5.1.14",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^0.27.2",
     "element-plus": "^2.2.9",
     "mockjs": "^1.1.0",
