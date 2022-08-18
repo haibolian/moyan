@@ -1,7 +1,7 @@
 import { MockMethod } from 'vite-plugin-mock'
 
 export default {
-  url: '/api/users/getUserInfo',
+  url: '/api/users/getUser',
   method: 'get',
   timeout: 500,
   response: ({ query }) => {
