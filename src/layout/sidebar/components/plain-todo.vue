@@ -2,7 +2,7 @@
   <div>
     <p :class="`text-12px mb-10px font-bold colorvar-my-c-shallow ${isCollapse && 'text-center'}`">todo: 3</p>
     <div class="bgcvar-my-bgc-deep box-border px-16px py-20px h-200px rounded-13px">
-      <ul class="overflow-auto h-100%">
+      <ul class="overflow-auto h-100% p-0 m-0">
         <li 
           v-for="task in tasks" 
           :class="`h-40px flex ${isCollapse ? 'justify-center' : 'justify-between'} items-center`"
