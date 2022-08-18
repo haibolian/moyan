@@ -9,7 +9,7 @@ export default {
       name: 'journal',
       component: () => import('@/views/journal/index.vue'),
       meta: {
-        title: '首页',
+        title: '日志',
         icon: 'el-icon-journal'
       }
     }
