@@ -11,6 +11,10 @@ export default defineComponent({
     }
   },
   props: {
+    align: {
+      type: String,
+      default: "middle",
+    },
     icon: {
       type: String,
       default: ""
@@ -31,7 +35,7 @@ export default defineComponent({
       {
         class: 'iconify-online',
         style: {
-          verticalAlign: 'middle',
+          verticalAlign: this.align,
           fontSize: this.size
         }
       },
