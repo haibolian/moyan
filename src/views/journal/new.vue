@@ -108,7 +108,7 @@ const publishAfter = ({ data, message }) => {
 
 <script lang='ts'>
 export default {
-  name: 'NewJournal'
+  name: 'JournalNew'
 }
 </script>
 
