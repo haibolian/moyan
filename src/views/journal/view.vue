@@ -8,8 +8,15 @@
     <div class="journal-view bg-#fff py-35px px-30px w-900px">
       <h1 class="journal-title text-center"> {{ journalInfo.title }} </h1>
       <div class="text-center">
-        <IconifyOnline align="unset" size="14px" icon="akar-icons:calendar"></IconifyOnline>
-        <span>{{ createInfo }}</span>
+        <span>{{ journalInfo.user?.nickname }}</span>
+        <span class="mx-15px">
+          <IconifyOnline align="unset" size="14px" icon="akar-icons:calendar"></IconifyOnline>
+          <span class="ml-4px">{{ journalInfo.createdAt }}</span>
+        </span>
+        <span>
+          <IconifyOnline color="#555" align="unset" size="14px" icon="fa6-solid:folder-open"></IconifyOnline>
+          <span class="ml-4px">{{ journalInfo.category }}</span>
+        </span>
       </div>
       <div ref="containerRef" id="journal-container"/>
     </div>
@@ -30,9 +37,6 @@ const { id } = router.currentRoute.value.params
 const journalInfo: any = reactive({})
 const containerRef = ref();
 
-const createInfo = computed(() => {
-  return ` ${journalInfo.user?.nickname} · ${journalInfo.createdAt}`
-})
 
 onMounted(async () => {
   const { success, message, data } = await getJournal(id);
