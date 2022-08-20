@@ -14,6 +14,7 @@ export default {
         isDraft: false,
         editorMode: 'MD',
         tags: [],
+        category: '前端',
         createdAt: '2021年1月2日 12:22:33',
         updatedAt: '2022年7月5日 19:21:51',
         user: {
