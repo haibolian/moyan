@@ -1,7 +1,7 @@
 <template>
   <article class="p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px" @mouseenter="isMouseEnterPanel = true" @mouseleave="isMouseEnterPanel = false">
     <header class="flex justify-between">
-      <el-avatar :size="40" :src="getImg(speaker?.avatar)" class="mr-10px"/>
+      <MAvatar :size="40" :src="speaker?.avatar" class="mr-10px"/>
       <div role="speaker-information" class="flex-1">
         <h4 role="speaker-name" class="colorvar-my-c-deep  m-0">{{ speaker?.nickname }}</h4>
         <span role="speak-time" class="colorvar-my-c-normal">{{ time }}</span>
@@ -44,7 +44,7 @@ import { publish as publishReply, del as delReply, getList as getReplies } from 
 import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
 import { useComment } from './comment';
-import { getImg } from '@/utils/splicing-domain';
+import MAvatar from '../MAvatar.vue';
 
 const props = defineProps({
   id: [String, Number],

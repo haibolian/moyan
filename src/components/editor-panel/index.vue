@@ -9,7 +9,7 @@
   >
     <div class="editor-wapper flex">
       <div v-if="showAvatar" class="editor-avatar w-58px">
-        <el-avatar class="" :src="getImg(avatarSrc || userInfo.avatar)" />
+        <MAvatar class="" :src="avatarSrc || userInfo.avatar" />
       </div>
       <div class="editor-main flex-1">
         <div
@@ -68,7 +68,7 @@ import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
 import { useWordLimit, useRows } from './editor-panel'
 import { useUserStore } from '@/store/modules/user'
-import { getImg } from '@/utils/splicing-domain'
+import MAvatar from '../MAvatar.vue';
 
 const { minRows } = useRows()
 const { userInfo } = useUserStore()

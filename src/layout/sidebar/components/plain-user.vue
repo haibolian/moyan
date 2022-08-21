@@ -2,10 +2,7 @@
   <div class="flex">
     <div>
       <!-- avatar-shadow dark:avatar-dark-shadow -->
-      <el-avatar class="" size="large"
-        :src="getImg(props.avatar)">
-        <!-- https://avatars.githubusercontent.com/u/51857421?v=4 -->
-      </el-avatar>
+      <MAvatar class="" size="large" :src="props.avatar" />
     </div>
     <div v-show="!isCollapse" class="flex flex-1 justify-center flex-col ml-15px overflow-hidden">
       <div class="colorvar-my-c-shallow text-11px font-bold">Good Day👏</div>
@@ -16,7 +13,7 @@
 
 <script setup lang='ts'>
 import { isCollapse } from '@/hooks/useCollapse';
-import { getImg } from "@/utils/splicing-domain";
+import MAvatar from '@/components/MAvatar.vue';
 
 const props = defineProps({
   avatar: String,

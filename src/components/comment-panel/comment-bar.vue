@@ -1,6 +1,6 @@
 <template>
   <div :class="`comment-bar flex ${props.to && 'mt-10px'}`" v-bind="$attrs">
-    <el-avatar :size="40" class="mr-10px" :src="getImg(from?.avatar)" />
+    <MAvatar :size="40" class="mr-10px" :src="from?.avatar" />
     <div class="flex-1">
       <Commentator :name="from?.nickname" :time="createdAt" :to="replyType != '0' && to?.nickname"/>
       <CommentContent class="mt-2px mb-4px" :content="content"/>
@@ -31,8 +31,8 @@
 import { Commentator, CommentContent } from './widget'
 import EditorPanel from '../editor-panel/index.vue';
 import { useUserStore } from '@/store/modules/user'
-import { getImg } from '@/utils/splicing-domain';
 import { errorMessage, successMessage } from '@/utils/message';
+import MAvatar from '../MAvatar.vue';
 
 const props = defineProps({
   id: Number, // comment id

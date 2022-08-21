@@ -15,7 +15,7 @@
         </span>
         <span>
           <IconifyOnline color="#555" align="unset" size="14px" icon="fa6-solid:folder-open"></IconifyOnline>
-          <span class="ml-4px">{{ journalInfo.category }}</span>
+          <span class="ml-4px">{{ journalInfo.categoryName }}</span>
         </span>
       </div>
       <div ref="containerRef" id="journal-container"/>
@@ -39,7 +39,7 @@ const containerRef = ref();
 
 
 onMounted(async () => {
-  const { success, message, data } = await getJournal(id);
+  const { success, message, data } = await getJournal({ id });
   Object.assign(journalInfo, data) 
   Vditor.preview(containerRef.value, journalInfo.content)
 })

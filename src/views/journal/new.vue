@@ -33,7 +33,7 @@
       >
         <IconifyOnline color="#777777" class="cursor-pointer" @click="toggleEditorMode" icon='icon-park-outline:switch' />
       </el-tooltip>
-      <el-avatar class="align-middle ml-15px" :size="38" shape="circle" :src="userInfo.avatar"></el-avatar>
+      <MAvatar class="align-middle ml-15px" :size="38" shape="circle" :src="userInfo.avatar"></MAvatar>
       </div>
     </div>
     <div class="">
@@ -68,7 +68,6 @@ import { useCategory } from './useCategory';
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { useVditor } from './useVditor';
 import { useWangEditor } from './useWangeditor';
-
 const { userInfo } = useUserStore()
 
 const handleChange = async val => {
@@ -124,10 +123,12 @@ const hasTitle = () => {
 }
 const publishJournal = async () => {
   if(!hasTitle()) return errorMessage('请输入文章标题')
+  if(!category.value) return errorMessage('请选择分类')
   const content = editorMode.value === 'MD' ? vditor.value?.getValue() : valueHtml.value;
   const body = {
     title: title.value,
     content,
+    categoryId: category.value,
     editorMode: editorMode.value,
     isDraft: false
   }
