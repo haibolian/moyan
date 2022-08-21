@@ -31,6 +31,10 @@
   --el-menu-border-color: none;
   --el-menu-item-height: 45px
 }
+.el-table {
+  --el-fill-color-blank: var(--my-bgc-normal);
+  --el-bg-color: var(--my-bgc-normal);
+}
 
 :root {
   --el-border-radius-base: 5px;

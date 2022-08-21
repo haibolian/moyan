@@ -1,5 +1,5 @@
 export default {
-  path: '/journal/new',
+  path: '/journal/new/:id?',
   name: 'JournalNew',
   component: () => import('@/views/journal/new.vue'),
   meta: {

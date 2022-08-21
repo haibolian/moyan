@@ -5,7 +5,7 @@ const Api = {
   saveDraft: '/journal/saveDraft',
   getDraft: '/journal/getDraft',
   getJournal: '/journal/getJournal',
-  getList: '/journal/getAll',
+  getList: '/journal/getList',
   del: '/journal/del'
 }
 
