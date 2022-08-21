@@ -10,7 +10,7 @@
       <div class="w-30% text-right">
         <span class="text-#777 mr-5px">输入可创建分类</span>
         <el-select
-          v-model="category"
+          v-model="categoryId"
           @change="handleChange"
           filterable
           allow-create
@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang='ts'>
-import { publish } from '@/api/journal';
+import { getJournal, publish, update } from '@/api/journal';
 import { errorMessage, successMessage } from '@/utils/message';
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
 import { useUserStore } from '@/store/modules/user';
@@ -68,24 +68,42 @@ import { useCategory } from './useCategory';
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { useVditor } from './useVditor';
 import { useWangEditor } from './useWangeditor';
-const { userInfo } = useUserStore()
 
-const handleChange = async val => {
-  const one = categoryOptions.value.find(item => item.id === val)
+const { userInfo } = useUserStore()
+const router = useRouter()
+
+
+const handleChange = async (val: string) => {
+  const one = categoryOptions.value.find(category => category.id === val)
   if(!one){
     const data = await createCategory(val)
-    category.value = data.id
+    categoryId.value = data.id
   }
 }
 
 // 分类
-const category = ref(null)
+const categoryId = ref(null)
 const { categoryOptions, getCategoryOptions, createCategory } = useCategory()
 onMounted(getCategoryOptions)
 
+
 // markdown 编辑器配置
 const { vditor, createVditor } = useVditor()
-onMounted(createVditor);
+onMounted(() => {
+  createVditor(initJournal)
+});
+
+const id = ref()
+// 初始化数据
+const initJournal = async () => {
+  id.value = router.currentRoute.value.params.id
+  if(!id.value) return vditor.value!.setValue('')
+  const { message, success, data } = await getJournal({ id: id.value })
+  if(!success) return errorMessage(message)
+  title.value = data.title
+  categoryId.value = data.categoryId
+  data.editorMode == 'MD' ? vditor.value!.setValue(data.content) : valueHtml.value = data.content
+}
 
 // 配置富文本
 const { 
@@ -111,44 +129,45 @@ const toggleEditorMode = () => {
     nextTick(createVditor)
   }
 }
-
 const toggleBtnText = computed(() => {
   return editorMode.value === 'MD' ? '切换为富文本' : '切换为Markdown'
 })
 
-const title = ref('');
 
+// 发布文章
+const title = ref('');
 const hasTitle = () => {
   return title.value.trim() !== ''
 }
 const publishJournal = async () => {
   if(!hasTitle()) return errorMessage('请输入文章标题')
-  if(!category.value) return errorMessage('请选择分类')
+  if(!categoryId.value) return errorMessage('请选择分类')
   const content = editorMode.value === 'MD' ? vditor.value?.getValue() : valueHtml.value;
   const body = {
+    id: id.value,
     title: title.value,
     content,
-    categoryId: category.value,
+    categoryId: categoryId.value,
     editorMode: editorMode.value,
     isDraft: false
   }
-  const { success, message, data } = await publish(body);
+  const { success, message, data } = await (id.value ? update(body) : publish(body));
   if(!success) {
     return errorMessage(message)
   }
   publishAfter({data, message})
 }
 
-const router = useRouter()
 const publishAfter = ({ data, message }) => {
   successMessage(message);
   router.push({
     name: 'JournalView',
     params: {
-      id: data.id
+      id: data
     }
   })
 }
+
 
 </script> 
 

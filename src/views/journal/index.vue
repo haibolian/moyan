@@ -1,8 +1,12 @@
 
 <template>
-  <div class="journal p-15px bgcvar-my-bgc-normal rounded-2xl">
-    <div class="journal-content">
+  <div>
+    <div class="p-15px bgcvar-my-bgc-normal rounded-2xl">
+      <el-button type="primary" @click="writeJournal">写文章</el-button>
+    </div>
+    <div class="journal-content p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px">
       <el-table :data="journalList" size="" highlight-current-row>
+      <el-table-column prop='createdAt' :formatter="formatDate" label="时间"></el-table-column>
         <el-table-column prop='title' label="标题">
           <template #="scope">
             <el-link
@@ -20,7 +24,6 @@
             <el-tag effect="dark" type="warning">{{scope.row.categoryName}}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop='createdAt' label="创建时间"></el-table-column>
         <el-table-column label="操作">
           <template #="scope">
             <el-button type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
@@ -40,6 +43,11 @@ import journal from '@/router/modules/journal';
 import { errorMessage, successMessage } from '@/utils/message';
 import { MessageConfirm } from '@/utils/message-box';
 
+const formatDate = function(row){
+  const date = /\d\d\d\d-\d\d-\d\d/.exec(row.createdAt)[0]
+  return date.replace(/-/, '年').replace('-', '月') + '日'
+}
+
 const journalList = ref([])
 const getJournalList = async () => {
   const { success, message, data } = await getList();
@@ -48,6 +56,10 @@ const getJournalList = async () => {
   
 }
 getJournalList()
+
+const writeJournal = () => {
+  window.open('/journal/new')
+}
 
 const previewJournal = (journal:Journal) => {
   window.open(`/journal/view/${journal.id}`)

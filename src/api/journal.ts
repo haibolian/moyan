@@ -6,10 +6,12 @@ const Api = {
   getDraft: '/journal/getDraft',
   getJournal: '/journal/getJournal',
   getList: '/journal/getList',
-  del: '/journal/del'
+  del: '/journal/del',
+  update: '/journal/update',
 }
 
 export const publish = (data: any) => http.post(Api.publish, data);
 export const getList = (params?: any) => http.get(Api.getList, params);
 export const getJournal = (params?: any) => http.get(Api.getJournal, params);
 export const del = (params?: any) => http.delete(Api.del, params);
+export const update = (data?: any) => http.post(Api.update, data);
