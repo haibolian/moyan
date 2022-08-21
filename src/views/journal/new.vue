@@ -102,6 +102,7 @@ const initJournal = async () => {
   if(!success) return errorMessage(message)
   title.value = data.title
   categoryId.value = data.categoryId
+  data.editorMode == 'RTF' && toggleEditorMode()
   data.editorMode == 'MD' ? vditor.value!.setValue(data.content) : valueHtml.value = data.content
 }
 
