@@ -67,7 +67,7 @@ import { useUserStore } from '@/store/modules/user';
 import { useCategory } from './useCategory';
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { useVditor } from './useVditor';
-import { useWangEditor } from './useWangeditor';
+import { useWangEditor } from './useWangEditor';
 
 const { userInfo } = useUserStore()
 const router = useRouter()
