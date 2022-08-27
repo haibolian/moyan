@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 import { ElLoading, ElLoadingService } from "element-plus"
 import 'element-plus/es/components/loading/style/index';
 import { storageLocal } from '../storage';
+import { baseURL } from '@/config';
 
 class MoyanHttp {
   public instance: AxiosInstance
@@ -58,7 +59,7 @@ class MoyanHttp {
 }
 
 const httpConfig: AxiosRequestConfig = {
-  baseURL: '/api',
+  baseURL,
   timeout: 5000,
 }
 
