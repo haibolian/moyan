@@ -62,7 +62,7 @@ const clickReplyBtn = () => {
 const Api = inject('Api')
 const { userInfo } = useUserStore()
 
-const publishReply = async (content: string) => {
+const publishReply = async ({ content }) => {
   const body = {
     content,
     commentId: props.id,

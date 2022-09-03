@@ -219,7 +219,11 @@ const clearEditor = () => {
 
 // 发送按钮状态
 const publish = () => {
-  emits('publish', editorContent.value, clearEditor)
+  emits(
+    'publish', 
+    { content: editorContent.value, images: imageList },
+    clearEditor
+  )
 }
 
 const focus = () => {

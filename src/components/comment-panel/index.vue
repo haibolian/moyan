@@ -20,7 +20,7 @@ const emits = defineEmits(['publish-comment', 'publish-reply'])
 const { userInfo } = useUserStore()
 const Api = inject('Api');
 
-const publishComment = async (content: string, clearEditor: () => void) => {
+const publishComment = async ({ content }, clearEditor: () => void) => {
   emits('publish-comment', content);
   const payload = {
     content,
