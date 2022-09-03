@@ -80,7 +80,7 @@ const deleteSpeak = () => {
     const { success, message, data } = await del({ id });
     if(!success) return errorMessage(message);
     successMessage(message);
-    emits('after-delete', id)
+    emits('after-delete', id, props.index)
   })
 }
 
