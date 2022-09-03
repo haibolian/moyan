@@ -22,7 +22,20 @@
     </header>
     <div role="speech-content" class="my-10px mx-2px text-16px leading-relaxed">
       <!-- whitespace-pre-wrap 用来支持 \n 换行, 不加这个是不会换行的 -->
-      <p class="whitespace-pre-wrap" v-html="content"></p>
+      <p class="whitespace-pre-wrap mb-5px" v-html="content"></p>
+      <div :class="`flex flex-wrap ${images?.length > 4 ? 'pr-140px' : ''}`">
+        <el-image
+          v-for="(url, index) in images"
+          class="w-140px h-140px rounded-5px mr-5px mt-5px"
+          lazy
+          :key="url"
+          :src="getImg(url)"
+          fit="cover"
+          hide-on-click-modal
+          :initial-index="index"
+          :preview-src-list="images?.map(url => getImg(url))"
+        />
+      </div>
     </div>
     <footer>
       <el-divider class="mt-15px mb-10px" />
@@ -45,6 +58,7 @@ import { MessageConfirm } from '@/utils/message-box';
 import { errorMessage, successMessage } from '@/utils/message';
 import { useComment } from './comment';
 import MAvatar from '../MAvatar.vue';
+import { getImg } from '@/utils/splicing-domain';
 
 const props = defineProps({
   id: [String, Number],
@@ -52,7 +66,8 @@ const props = defineProps({
   content: String,
   commentCount: [ Number, String ],
   time: String,
-  speaker: Object
+  speaker: Object,
+  images: Array
 })
 const emits = defineEmits(['before-delete', 'after-delete'])
 

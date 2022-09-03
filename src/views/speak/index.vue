@@ -10,6 +10,7 @@
       :comment-count="speak.commentCount"
       :time="speak.created_at"
       :speaker="speak.user"
+      :images="JSON.parse(speak.images)"
       @after-delete="deleteSpeak"
     ></SpeakPanel>
   </div>
