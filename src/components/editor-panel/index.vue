@@ -33,7 +33,42 @@
             contenteditable="true"
             spellcheck="false"
           />
-          <p v-if="showWordLimit" @click="() => {}" :class="`text-right text-xs ${isOverLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold`">{{ wordLimitText }}</p>
+          
+          <div v-if="showWordLimit" @click="() => {}" :class="`flex flex-row-reverse justify-between items-end text-xs ${isOverLimit ? 'colorvar-el-color-error' : 'colorvar-my-c-normal'} font-bold mt-30px`">
+            <span>{{ wordLimitText }}</span>
+            <!-- <ImagePicker ref="imagePickerRef" v-show="imageList.length" :imageList="imageList"></ImagePicker> -->
+            <el-upload
+              ref="uploadRef"
+              v-show="imageList.length"
+              class="editor-image-picker"
+              v-model:file-list="imageList"
+              action="#"
+              multiple
+              :disabled="isDisabledUpload"
+              :on-exceed="handleExceed"
+              name="files"
+              :limit="9"
+              :auto-upload="false"
+              list-type="picture-card"
+            >
+              <IconifyOnline class="" ref="addRef" size="24px" icon="ant-design:plus-outlined"></IconifyOnline>
+              <template #file="{ file }">
+                <div>
+                  <IconifyOnline
+                    class="absolute z-99 right-0 top-1px cursor-pointer hover:text-#888888"
+                    icon="ph:x-circle-fill"
+                    @click="deleteImage(file)"
+                  />
+                  <el-image
+                    style="width: 80px; height: 80px"
+                    :src="file.url"
+                    :initial-index="4"
+                    fit="cover"
+                  />
+                </div>
+              </template>
+            </el-upload>
+          </div>
           
         </div>
         <!-- assist -->
@@ -49,7 +84,7 @@
                 <IconifyOnline class="mr-3px" size="18px" icon="fa-regular:smile"></IconifyOnline>表情
               </el-link>
             </EmojiPicker>
-            <el-link :underline="false" class="ml-20px">
+            <el-link :disabled="isDisabledUpload" :underline="false" class="ml-20px" @click="selectImage">
               <IconifyOnline icon="material-symbols:imagesmode" size="18px" class="mr-3px" />
               图片
             </el-link>
@@ -66,9 +101,23 @@
 <script setup lang='ts'>
 import propsInstance from './props';
 import EmojiPicker from '@/components/emoji-picker/index.vue';
-import { useWordLimit, useRows } from './editor-panel'
+import { useWordLimit, useRows, useUploadImage } from './editor-panel'
 import { useUserStore } from '@/store/modules/user'
 import MAvatar from '../MAvatar.vue';
+import { VueInstance } from '@vueuse/core';
+import { Ref } from 'vue';
+
+// imageList
+const addRef: Ref<VueInstance> = ref() as Ref<VueInstance>
+const uploadRef = ref()
+const {
+  imageList,
+  selectImage,
+  isDisabledUpload,
+  deleteImage,
+  handleExceed
+} = useUploadImage(uploadRef, addRef)
+
 
 const { minRows } = useRows()
 const { userInfo } = useUserStore()

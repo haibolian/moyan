@@ -47,3 +47,12 @@
 .el-message-box {
   --el-messagebox-border-radius: 12px;
 }
+
+.editor-image-picker {
+  .el-upload--picture-card {
+    --el-upload-picture-card-size: 80px;
+  }
+  .el-upload-list--picture-card {
+    --el-upload-list-picture-card-size: 80px;
+  }
+}

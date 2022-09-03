@@ -1,5 +1,6 @@
 import { ref, computed, Ref } from 'vue'
 import { useProp } from '@/hooks/use-prop'
+import { errorMessage } from '@/utils/message'
 
 export const useWordLimit = () => {
   const maxlength = useProp('maxlength')
@@ -25,5 +26,28 @@ export const useRows = () => {
   })
   return {
     minRows
+  }
+}
+
+export const useUploadImage = (uploadRef, addRef) => {
+  const imageList = reactive([])
+  const isDisabledUpload = computed(() => {
+    return imageList.length >= 9
+  })
+  const handleExceed = () => {
+    errorMessage('最多允许上传 9 张图片')
+  }
+  const selectImage = () => {
+    addRef.value.$el.click()
+  }
+  const deleteImage = (file) => {
+    uploadRef.value.handleRemove(file)
+  }
+  return {
+    imageList,
+    isDisabledUpload,
+    handleExceed,
+    selectImage,
+    deleteImage
   }
 }
