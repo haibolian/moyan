@@ -215,6 +215,7 @@ const clearEditor = () => {
   editorAreaRef.value.innerText = ''
   editorContent.value = ''
   wordLen.value = 0
+  imageList.splice(0)
 }
 
 // 发送按钮状态
