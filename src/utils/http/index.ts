@@ -36,6 +36,7 @@ class MoyanHttp {
       return response.data
     }, (error: AxiosError) => {
       NProgress.done()
+      this.loading.close()
       return Promise.reject(error)
     })
   }
