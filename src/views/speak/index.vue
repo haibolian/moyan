@@ -44,7 +44,10 @@ onMounted(() => {
 
 const publishSpeak = async ({ content, images }, clearEditor: () => void) => {
   if(!content) return errorMessage('请输入内容');
-  const { success, message, data } = await publish({ content, images });
+  const formdata = new FormData()
+  images.forEach(image => formdata.append('images' , image.raw));
+  formdata.append('content', content)
+  const { success, message, data } = await publish(formdata);
   if(!success) return errorMessage(message);
   speakList.value.unshift(data);
   successMessage('发表成功');
