@@ -10,7 +10,7 @@
       router
     >
       <el-menu-item index="home">
-        <IconifyOnline class="ml-1px" size="23px" icon="uim:apps" />
+        <IconifyOnline icon="uim:apps" />
         <template #title>
           <span class="pl-10px">首页</span>
         </template>
@@ -28,19 +28,19 @@
         </template>
       </el-menu-item>
       <el-menu-item index="journal">
-        <IconifyOnline size="26px" icon="bxs:notification" />
+        <IconifyOnline icon="ph:notebook-fill" />
         <template #title>
           <span class="pl-10px">日志</span>
         </template>
       </el-menu-item>
       <el-menu-item index="todo">
-        <IconifyOnline icon="ph:notebook-fill" />
+        <IconifyOnline icon="uim:check-square" />
         <template #title>
           <span class="pl-10px">待办</span>
         </template>
       </el-menu-item>
       <el-menu-item index="message">
-        <IconifyOnline icon="uim:check-square" />
+        <IconifyOnline class="message-menu" icon="fa6-solid:square-pen" />
         <template #title>
           <div class='flex-1 flex justify-between'>
             <span class="pl-10px">留言板</span>
@@ -87,5 +87,10 @@ export default {
 }
 .el-menu-item.is-active {
   background-color: var(--el-menu-active-bg-color);
+}
+::v-deep .message-menu {
+  svg {
+    width: 22px;
+  }
 }
 </style>
