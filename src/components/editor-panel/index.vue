@@ -215,14 +215,14 @@ const clearEditor = () => {
   editorAreaRef.value.innerText = ''
   editorContent.value = ''
   wordLen.value = 0
-  imageList.splice(0)
+  uploadRef.value.clearFiles()
 }
 
 // 发送按钮状态
 const publish = () => {
   emits(
     'publish', 
-    { content: editorContent.value, images: imageList },
+    { content: editorContent.value, images: imageList.value },
     clearEditor
   )
 }

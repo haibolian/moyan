@@ -30,9 +30,9 @@ export const useRows = () => {
 }
 
 export const useUploadImage = (uploadRef, addRef) => {
-  const imageList = reactive([])
+  const imageList = ref([])
   const isDisabledUpload = computed(() => {
-    return imageList.length >= 9
+    return imageList.value.length >= 9
   })
   const handleExceed = () => {
     errorMessage('最多允许上传 9 张图片')
