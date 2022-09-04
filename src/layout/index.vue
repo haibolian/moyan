@@ -7,11 +7,11 @@
       </nav>
     </div>
     <main class="main-container w-40%">
-      <div class="layout-view">
+      <div class="layout-view w-45rem">
         <router-view></router-view>
       </div>
     </main>
-    
+
 
   </div>
 </template>
