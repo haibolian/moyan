@@ -29,11 +29,11 @@
           class="w-140px h-140px rounded-5px mr-5px mt-5px"
           lazy
           :key="url"
-          :src="getImg(url)"
+          :src="url"
           fit="cover"
           hide-on-click-modal
           :initial-index="index"
-          :preview-src-list="images?.map(url => getImg(url))"
+          :preview-src-list="images"
         />
       </div>
     </div>
