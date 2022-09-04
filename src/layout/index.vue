@@ -1,14 +1,17 @@
 <template>
-  <div class="layout">
-    <nav class="sidebar">
-      <!-- transition-width-300  ease-in-out -->
-      <SideBar></SideBar>
-    </nav>
-    <main class="main-container">
+  <div class="layout flex">
+    <div class="w-30% flex justify-end">
+      <nav class="sidebar">
+        <!-- transition-width-300  ease-in-out -->
+        <SideBar></SideBar>
+      </nav>
+    </div>
+    <main class="main-container w-40%">
       <div class="layout-view">
         <router-view></router-view>
       </div>
     </main>
+    
 
   </div>
 </template>
@@ -39,7 +42,7 @@ export default {
   box-sizing: border-box;
   position: fixed;
   top: 0;
-  left: 0;
+  /* left: 0; */
   width: var(--sidebar-width);
   height: 100vh;
   padding: 20px;
@@ -50,8 +53,8 @@ export default {
   box-sizing: border-box;
   position: relative;
   top: 0;
-  left: var(--sidebar-width);
-  width: calc(100% - var(--sidebar-width));
+  /* left: var(--sidebar-width); */
+  /* width: calc(100% - var(--sidebar-width)); */
   min-height: 100vh;
 }
 </style>
