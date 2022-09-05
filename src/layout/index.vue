@@ -8,7 +8,11 @@
     </div>
     <main class="main-container w-40%">
       <div class="layout-view w-45rem">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <!-- <keep-alive> -->
+            <component :is="Component"></component>
+          <!-- </keep-alive> -->
+        </router-view>
       </div>
     </main>
 
