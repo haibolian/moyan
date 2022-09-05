@@ -9,9 +9,9 @@
     <main class="main-container w-40%">
       <div class="layout-view w-45rem">
         <router-view v-slot="{ Component }">
-          <!-- <keep-alive> -->
+          <keep-alive>
             <component :is="Component"></component>
-          <!-- </keep-alive> -->
+          </keep-alive>
         </router-view>
       </div>
     </main>
