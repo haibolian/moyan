@@ -6,7 +6,7 @@
 
     <div class="my-card min-h-20rem">
       <h2>待办</h2>
-      <TodoList :list="todoList.filter(todo => !todo.done)" :type='1' />
+      <TodoList :list="todoList.filter(todo => !todo.done)" :type='0' />
       <h2 class="mt-50px">已完成</h2>
       <TodoList :list="todoList.filter(todo => todo.done)" :type='1'/>
     </div>
