@@ -14,6 +14,7 @@ export const useVditor = () => {
         url: 'http://localhost:3000/api/upload/vditor',
         token: 'test',
         fieldName: 'images',
+        linkToImgUrl: 'http://localhost:3000/api/upload/vditor',
         headers: {
           Authorization: `Bearer ${storageLocal.getItem('token')}`
         },
