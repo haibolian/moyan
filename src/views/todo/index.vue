@@ -5,9 +5,9 @@
     </div>
 
     <div class="my-card min-h-20rem">
-      <h2>Todo</h2>
+      <h2>待办</h2>
       <TodoList :list="todoList.filter(todo => !todo.done)" :type='1' />
-      <h2>Done</h2>
+      <h2 class="mt-50px">已完成</h2>
       <TodoList :list="todoList.filter(todo => todo.done)" :type='1'/>
     </div>
   </div>
@@ -33,7 +33,7 @@ const todoList = ref([
   {
     id: '1',
     title: '为哥哥打榜',
-    handleTime: '2020-1-1 15:23',
+    handleTime: '2020-01-01 15:23',
     importance: 1,
     category: 'red',
     done: true,
@@ -42,7 +42,7 @@ const todoList = ref([
   {
     id: '2',
     title: '抨击小黑子',
-    handleTime: '2020-1-1 15:23',
+    handleTime: '2020-01-01 15:23',
     importance: 2,
     category: 'blue',
     done: false,
@@ -51,7 +51,7 @@ const todoList = ref([
   {
     id: '3',
     title: '守护坤坤',
-    handleTime: '2020-1-1 15:23',
+    handleTime: '2020-01-01 15:23',
     importance: 3,
     category: 'green',
     done: false,
@@ -74,11 +74,6 @@ $transparentColor: #ffffff00;
 }
 
 .el-input {
-  // --el-input-border-color: $transparentColor;
-  // --el-input-hover-border: $transparentColor;
-  // --el-input-bg-color: $transparentColor;
-  // --el-input-focus-border-color: $transparentColor;
-  // --el-input-hover-border-color: $transparentColor;
   --el-font-size-base: 16px;
 
 }
