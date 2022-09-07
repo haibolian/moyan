@@ -6,7 +6,7 @@
     </div>
     <div class="journal-content p-15px bgcvar-my-bgc-normal rounded-2xl mt-20px">
       <el-table :data="journalList" size="" highlight-current-row>
-      <el-table-column prop='createdAt' :formatter="formatDate" label="时间" width="150"></el-table-column>
+        <el-table-column prop='createdAt' :formatter="formatDate" label="时间" width="150"></el-table-column>
         <el-table-column prop='title' label="标题" show-overflow-tooltip min-width="200">
           <template #="scope">
             <el-link
