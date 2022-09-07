@@ -61,7 +61,7 @@ class MoyanHttp {
 
 const httpConfig: AxiosRequestConfig = {
   baseURL,
-  timeout: 5000,
+  timeout: 50000,
 }
 
 const http = new MoyanHttp(httpConfig)
