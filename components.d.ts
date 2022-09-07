@@ -5,14 +5,14 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CircleColor: typeof import('./src/components/select-color-group/circle-color.vue')['default']
     CommentBar: typeof import('./src/components/comment-panel/comment-bar.vue')['default']
     CommentPanel: typeof import('./src/components/comment-panel/index.vue')['default']
     EditorPanel: typeof import('./src/components/editor-panel/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
-    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElCol: typeof import('element-plus/es')['ElCol']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
@@ -26,8 +26,8 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
-    ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
     ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
@@ -37,12 +37,11 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     EmojiPicker: typeof import('./src/components/emoji-picker/index.vue')['default']
-    ImagePicker: typeof import('./src/components/editor-panel/ImagePicker.vue')['default']
     InfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
-    InputPanel: typeof import('./src/components/input-panel/index.vue')['default']
     MAvatar: typeof import('./src/components/MAvatar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SelectColorGroup: typeof import('./src/components/select-color-group/index.vue')['default']
     SpeakPanel: typeof import('./src/components/speak-panel/index.vue')['default']
   }
 }

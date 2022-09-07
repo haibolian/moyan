@@ -21,7 +21,8 @@ export default defineConfig({
     }
   },
   shortcuts: {
-    'test-overflow-ellipsis': 'whitespace-nowrap  text-ellipsis overflow-hidden'
+    'test-overflow-ellipsis': 'whitespace-nowrap  text-ellipsis overflow-hidden',
+    'my-card': 'p-15px bgcvar-my-bgc-normal rounded-2xl mb-20px'
   },
   rules: 
   [
