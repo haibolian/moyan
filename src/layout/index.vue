@@ -6,16 +6,14 @@
         <SideBar></SideBar>
       </nav>
     </div>
-    <main class="main-container w-40%">
-      <div class="layout-view w-45rem">
-        <router-view v-slot="{ Component }">
-          <keep-alive>
-            <component :is="Component"></component>
-          </keep-alive>
-        </router-view>
-      </div>
+    <main class="main-container flex-1">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component"></component>
+        </keep-alive>
+      </router-view>
     </main>
-
+    
 
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <el-dropdown class="block!" trigger="click">
-    <div class="cursor-pointer p-3px text-center">
+  <el-dropdown class="block!" trigger="click" :disabled="disabled">
+    <div :class="`${ !disabled && 'cursor-pointer' } p-3px text-center`">
       <CircleColor class="m-auto" :color="modelValue"></CircleColor>
     </div>
       <!-- <IconifyOnline icon="uim:angle-down" /> -->
@@ -12,7 +12,9 @@
           @click="clickColor(color)"
         >
           <CircleColor :color="color.value"></CircleColor>
-          <slot name="suffix" :color="color"></slot>
+          <span class="ml-5px">
+            <slot name="suffix" :color="color"></slot>
+          </span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -55,6 +57,10 @@ const props = defineProps({
       }
     ]
   },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
 
 })
 const emits = defineEmits(['update:modelValue'])

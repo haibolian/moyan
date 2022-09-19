@@ -1,10 +1,10 @@
 <template>
-  <template v-if="list.length">
+  <div v-if="list.length" class="min-h-200px">
     <el-row
       v-for="(todo, index) in list"
       :key="todo.id"
       :gutter="10"
-      class="border-b border-b-#ddd mb-10px"
+      :class="`border-b border-b-#ddd mb-10px ${ type && 'text-#aaa'}`"
       align="middle"
     >
       <el-col :span="1" @click="">
@@ -20,14 +20,16 @@
         </div>
       </el-col>
       <el-col :span="1">
-        <SelectColorGroup v-model="todo.category">
+        <SelectColorGroup v-if="!type" v-model="todo.category">
           <template #suffix="{ color }">
-            <span class="ml-5px">{{ color.name }}</span>
+            {{ color.name }}
           </template>
         </SelectColorGroup>
+        <CircleColor v-else :color="todo.category"></CircleColor>
       </el-col>
       <el-col :span="5">
         <el-date-picker
+          v-if="!type"
           v-model="todo.handleTime"
           type="datetime"
           placeholder="无期限"
@@ -35,16 +37,18 @@
           value-format="YYYY-MM-DD HH:mm"
           :shortcuts="shortcuts"
         />
+        <span v-else>{{ todo.handleTime || '无期限' }}</span>
       </el-col>
     </el-row>
-  </template>
-  <template v-else>
-    <el-empty image="https://iconfont.alicdn.com/p/illus/preview_image/4wGLMYecEM6j/bbbc1bb9-8252-4f78-82af-c29807dce50d.png" :description="`暂无${type ? '已完成待办' : '待办事项'}`" />
-  </template>
+  </div>
+  <div v-else>
+    <el-empty image="https://listen-wind-1308522723.cos.ap-shanghai.myqcloud.com/common/svg/no-record.svg" :description="`暂无${type ? '已完成事项' : '待办事项'}`" />
+  </div>
 </template>
 
 <script setup lang='ts'>
 import SelectColorGroup from '@/components/select-color-group/index.vue';
+import CircleColor from '@/components/select-color-group/circle-color.vue';
 const props = defineProps({
   type: {
     type: Number,
@@ -63,10 +67,6 @@ const blurTitle = (e, todo) => {
 const oneDay = 3600 * 1000 * 24
 
 const shortcuts = [
-  {
-    text: '现在',
-    value: new Date()
-  },
   {
     text: '明天',
     value: () => {
