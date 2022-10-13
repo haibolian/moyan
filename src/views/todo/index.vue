@@ -27,7 +27,7 @@
     </div>
     <div class="todo-right flex-1 ml-40px">
       <div class="calendar-container w-300px rounded-16px bgcvar-my-bgc-normal">
-        <el-calendar v-model="currentDate">
+        <el-calendar class="rounded-16px" v-model="currentDate">
           <template #dateCell="{ data }">
             <span class="">{{ Number(data.day.split('-')[2]) }}</span>
             <div
