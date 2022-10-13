@@ -5,18 +5,22 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CalendarPanel: typeof import('./src/components/calendar-panel/index.vue')['default']
     CircleColor: typeof import('./src/components/select-color-group/circle-color.vue')['default']
     CommentBar: typeof import('./src/components/comment-panel/comment-bar.vue')['default']
     CommentPanel: typeof import('./src/components/comment-panel/index.vue')['default']
     EditorPanel: typeof import('./src/components/editor-panel/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElEmpty: typeof import('element-plus/es')['ElEmpty']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -42,6 +46,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelectColorGroup: typeof import('./src/components/select-color-group/index.vue')['default']
+    SmallCalendar: typeof import('./src/components/small-calendar/index.vue')['default']
     SpeakPanel: typeof import('./src/components/speak-panel/index.vue')['default']
   }
 }

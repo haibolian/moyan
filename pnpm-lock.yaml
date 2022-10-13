@@ -10,6 +10,7 @@ specifiers:
   '@wangeditor/editor': ^5.1.14
   '@wangeditor/editor-for-vue': ^5.1.12
   axios: ^0.27.2
+  dayjs: ^1.11.5
   element-plus: ^2.2.9
   mockjs: ^1.1.0
   nprogress: ^0.2.0
@@ -32,6 +33,7 @@ dependencies:
   '@wangeditor/editor': registry.npmmirror.com/@wangeditor/editor/5.1.14
   '@wangeditor/editor-for-vue': registry.npmmirror.com/@wangeditor/editor-for-vue/5.1.12_3czidxuhsdmk6jzpqgazshrppa
   axios: registry.npmmirror.com/axios/0.27.2
+  dayjs: registry.npmmirror.com/dayjs/1.11.5
   element-plus: registry.npmmirror.com/element-plus/2.2.9_vue@3.2.37
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   nprogress: registry.npmmirror.com/nprogress/0.2.0
@@ -1666,10 +1668,10 @@ packages:
       type: registry.npmmirror.com/type/1.2.0
     dev: false
 
-  registry.npmmirror.com/dayjs/1.11.3:
-    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.3.tgz}
+  registry.npmmirror.com/dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.5.tgz}
     name: dayjs
-    version: 1.11.3
+    version: 1.11.5
     dev: false
 
   registry.npmmirror.com/debug/2.6.9:
@@ -1768,7 +1770,7 @@ packages:
       '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.6
       '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.7.5_vue@3.2.37
       async-validator: registry.npmmirror.com/async-validator/4.2.5
-      dayjs: registry.npmmirror.com/dayjs/1.11.3
+      dayjs: registry.npmmirror.com/dayjs/1.11.5
       escape-html: registry.npmmirror.com/escape-html/1.0.3
       lodash: registry.npmmirror.com/lodash/4.17.21
       lodash-es: registry.npmmirror.com/lodash-es/4.17.21

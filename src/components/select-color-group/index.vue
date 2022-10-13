@@ -63,10 +63,11 @@ const props = defineProps({
   }
 
 })
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'change'])
 
 const clickColor = ({ value }) => {
   emits('update:modelValue', value)
+  emits('change', value)
 }
 
 

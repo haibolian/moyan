@@ -7,8 +7,8 @@
       :class="`border-b border-b-#ddd mb-10px ${ type && 'text-#aaa'}`"
       align="middle"
     >
-      <el-col :span="1" @click="">
-        <el-checkbox v-model="todo.done"></el-checkbox>
+      <el-col :span="1">
+        <el-checkbox @click.once="changeTodoDone(todo)" :true-label="1" :false-label="0" v-model="todo.done"></el-checkbox>
       </el-col>
       <el-col :span="17">
         <div
@@ -20,7 +20,7 @@
         </div>
       </el-col>
       <el-col :span="1">
-        <SelectColorGroup v-if="!type" v-model="todo.category">
+        <SelectColorGroup v-if="!type" v-model="todo.category" @change="changeTodoCategory(todo)">
           <template #suffix="{ color }">
             {{ color.name }}
           </template>
@@ -36,6 +36,7 @@
           format="YYYY-MM-DD HH:mm"
           value-format="YYYY-MM-DD HH:mm"
           :shortcuts="shortcuts"
+          @change="changeTodoHandleTime(todo)"
         />
         <span v-else>{{ todo.handleTime || '无期限' }}</span>
       </el-col>
@@ -49,6 +50,7 @@
 <script setup lang='ts'>
 import SelectColorGroup from '@/components/select-color-group/index.vue';
 import CircleColor from '@/components/select-color-group/circle-color.vue';
+import { update } from '@/api/todo';
 const props = defineProps({
   type: {
     type: Number,
@@ -61,8 +63,25 @@ const props = defineProps({
 })
 
 const blurTitle = (e, todo) => {
+  if(todo.title === e.target.innerText) return
   todo.title = e.target.innerText
+  update(todo)
 }
+const changeTodoDone = ({ id, done }) => {
+  update({
+    id,
+    done: !done ? 1 : 0
+  })
+}
+const changeTodoCategory = (todo) => {
+  update(todo)
+}
+const changeTodoHandleTime = (todo) => {
+  update(todo)
+}
+// const updateTodo = async (todo) => {
+//   const { success, message, data } = update(todo)
+// }
 
 const oneDay = 3600 * 1000 * 24
 
