@@ -26,22 +26,24 @@
       </div>
     </div>
     <div class="todo-right flex-1 ml-40px">
-      <el-calendar class="w-300px" v-model="currentDate">
-        <template #dateCell="{ data }">
-          <span class="">{{ Number(data.day.split('-')[2]) }}</span>
-          <div
-            v-if="todoTagMap[data.day]"
-            class="w-100% h-10px absolute bottom-0 left-0 flex justify-evenly px-5px box-border"
-          >
+      <div class="calendar-container w-300px rounded-16px bgcvar-my-bgc-normal">
+        <el-calendar v-model="currentDate">
+          <template #dateCell="{ data }">
+            <span class="">{{ Number(data.day.split('-')[2]) }}</span>
             <div
-              v-for="todo in todoTagMap[data.day].filter(t => !t.done).slice(0, 5)"
-              :style="{ backgroundColor: todo.category }"
-              :class="`inline-block rounded w-4px h-4px`"
+              v-if="todoTagMap[data.day]"
+              class="w-100% h-10px absolute bottom-0 left-0 flex justify-evenly px-5px box-border"
             >
+              <div
+                v-for="todo in todoTagMap[data.day].filter(t => !t.done).slice(0, 5)"
+                :style="{ backgroundColor: todo.category }"
+                :class="`inline-block rounded w-4px h-4px`"
+              >
+              </div>
             </div>
-          </div>
-        </template>
-      </el-calendar>
+          </template>
+        </el-calendar>
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@ import TodoList from './TodoList.vue';
 import dayjs, { showDay } from '@/utils/day';
 import SmallCalendar from '@/components/small-calendar/index.vue';
 import { getTodoTagMap, getList, create, del } from '@/api/todo';
-import { errorMessage, successMessage } from '@/utils/message';
+import { errorMessage, successMessage, warnMessage } from '@/utils/message';
 import { MessageConfirm } from '@/utils/message-box';
     
 const todoList = ref([])
@@ -99,8 +101,9 @@ const changeTodoDone = ({ id, day, done }) => {
 
 // 情况已完成
 const clearDonwTodo = () => {
+  const ids = todoList.value.filter(todo => todo.done).map(todo => todo.id).join(',')
+  if(!ids) return errorMessage('没有已完成待办')
   MessageConfirm('提示', '确定要清空已完成的待办吗？', async () => {
-    const ids = todoList.value.filter(todo => todo.done).map(todo => todo.id).join(',')
     const { success, message, data } = await del({ id: ids})
     if(!success) return errorMessage(message)
     successMessage(message)
@@ -123,6 +126,7 @@ $transparentColor: #ffffff00;
   color: var(--my-c-normal);
   .el-calendar {
     --el-calendar-cell-width: 46px;
+    --el-color-primary-light-9: var(--my-bgc-deep);
     ::v-deep .el-calendar-table .el-calendar-day {
       position: relative;
       padding: 0;

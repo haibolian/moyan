@@ -27,6 +27,14 @@ const warnMessage = (message: string): any => {
   });
 };
 
+// 警告
+const infoMessage = (message: string): any => {
+  return ElMessage({
+    showClose: true,
+    message,
+  });
+};
+
 // 失败
 const errorMessage = (message: string): any => {
   return ElMessage({
@@ -36,4 +44,4 @@ const errorMessage = (message: string): any => {
   });
 };
 
-export { Message, successMessage, warnMessage, errorMessage };
+export { Message, successMessage, warnMessage, errorMessage, infoMessage };

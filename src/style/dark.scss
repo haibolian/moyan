@@ -1,6 +1,8 @@
 html.dark {
   background-color: #1a1a1a;
   color: #fff;
+
+  --el-bg-color: var(--my-bgc-deep);
   .el-menu {
     --el-menu-text-color: var(--my-c-normal);
     --el-menu-hover-bg-color: var(--my-bgc-hover) !important;
