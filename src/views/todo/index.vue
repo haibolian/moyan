@@ -12,12 +12,17 @@
   
       <div class="my-card min-h-20rem pb-50px">
         <h2>待办</h2>
-        <TodoList :list="todoList.filter(todo => !todo.done)" :type='0' />
+        <TodoList
+        :list="todoList.filter(todo => !todo.done)"
+        :type='0'
+        @change-category="changeTodoCategory"
+        @change-done="changeTodoDone"
+        />
         <div class="flex justify-between items-center mt-50px">
           <h2>已完成</h2>
-          <el-button type="primary">清空</el-button>
+          <el-button @click="clearDonwTodo" type="primary">清空</el-button>
         </div>
-        <TodoList :list="todoList.filter(todo => todo.done)" :type='1'/>
+        <TodoList  @change-done="changeTodoDone" :list="todoList.filter(todo => todo.done)" :type='1'/>
       </div>
     </div>
     <div class="todo-right flex-1 ml-40px">
@@ -29,7 +34,7 @@
             class="w-100% h-10px absolute bottom-0 left-0 flex justify-evenly px-5px box-border"
           >
             <div
-              v-for="todo in todoTagMap[data.day]"
+              v-for="todo in todoTagMap[data.day].filter(t => !t.done).slice(0, 5)"
               :style="{ backgroundColor: todo.category }"
               :class="`inline-block rounded w-4px h-4px`"
             >
@@ -45,35 +50,9 @@
 import TodoList from './TodoList.vue';
 import dayjs, { showDay } from '@/utils/day';
 import SmallCalendar from '@/components/small-calendar/index.vue';
-import { getTodoTagMap, getList, create } from '@/api/todo';
-import { errorMessage } from '@/utils/message';
-
-const colors = [
-      {
-        value: '#ff675d',
-        name: '红色'
-      },
-      {
-        value: '#ffaa4f',
-        name: '橙色'
-      },
-      {
-        value: '#a5a5a9',
-        name: '灰色'
-      },
-      {
-        value: '#4c95ff',
-        name: '蓝色'
-      },
-      {
-        value: '#64d86c',
-        name: '绿色'
-      },
-      {
-        value: '#c076e5',
-        name : '紫色'
-      }
-    ]
+import { getTodoTagMap, getList, create, del } from '@/api/todo';
+import { errorMessage, successMessage } from '@/utils/message';
+import { MessageConfirm } from '@/utils/message-box';
     
 const todoList = ref([])
 
@@ -96,24 +75,38 @@ watchEffect(async () => {
   if(!success) return errorMessage(message)
   todoList.value = data
 })
+
+// 修改日历组件待办显示表示
 const todoTagMap = ref({})
-watchEffect(async () => {
-  // const { success, message, data } = await getTodoTagMap({ day: currentDate.value.toLocaleDateString })
-  // if(!success) return errorMessage(message)
-  todoTagMap.value = {
-    '2022-10-09': [
-      {
-        category: '#ff675d',
-      },
-      {
-        category: '#64d86c',
-      },
-      {
-        category: '#c076e5',
-      }
-    ]
-  }
-})
+const getTagMap = async (day) => {
+  const { success, message, data } = await getTodoTagMap({ day })
+  if(!success) return errorMessage(message)
+  todoTagMap.value = data
+}
+watch(currentDate, (newVal, oldVal) => {
+  if(oldVal && newVal.getMonth() === oldVal.getMonth()) return
+  getTagMap(dayjs(newVal).format('YYYY-MM-DD'))
+}, { immediate: true })
+
+const changeTodoCategory = ({ id, day, category }) => {
+  const todoTag = todoTagMap.value[day].find(todoTag => todoTag.id === id)
+  if(todoTag) todoTag.category = category
+}
+const changeTodoDone = ({ id, day, done }) => {
+  const todoTag = todoTagMap.value[day].find(todoTag => todoTag.id === id)
+  if(todoTag) todoTag.done = done
+}
+
+// 情况已完成
+const clearDonwTodo = () => {
+  MessageConfirm('提示', '确定要清空已完成的待办吗？', async () => {
+    const ids = todoList.value.filter(todo => todo.done).map(todo => todo.id).join(',')
+    const { success, message, data } = await del({ id: ids})
+    if(!success) return errorMessage(message)
+    successMessage(message)
+    todoList.value = todoList.value.filter(todo => !todo.done)
+  })
+}
 
 </script>
 

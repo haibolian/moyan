@@ -61,19 +61,20 @@ const props = defineProps({
     default: () => []
   }
 })
+const emits = defineEmits(['change-category', 'change-done'])
 
 const blurTitle = (e, todo) => {
   if(todo.title === e.target.innerText) return
   todo.title = e.target.innerText
   update(todo)
 }
-const changeTodoDone = ({ id, done }) => {
-  update({
-    id,
-    done: !done ? 1 : 0
-  })
+const changeTodoDone = ({ id, day, done: oldDone }) => {
+  const done = !oldDone ? 1 : 0
+  emits('change-done', { id, day, done })
+  update({ id, done })
 }
 const changeTodoCategory = (todo) => {
+  emits('change-category', todo)
   update(todo)
 }
 const changeTodoHandleTime = (todo) => {
